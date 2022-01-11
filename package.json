@@ -5,6 +5,9 @@
   "repository": "https://github.com/ludico1959/clients-n-cities.git",
   "author": "ludico1959 <ludico1959@gmail.com>",
   "license": "MIT",
+  "script": {
+    "dev": "ts-node-dev --transpile-only src/app/server.ts"
+  },
   "dependencies": {
     "express": "^4.17.2",
     "pg": "^8.7.1",
