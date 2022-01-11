@@ -5,7 +5,7 @@
   "repository": "https://github.com/ludico1959/clients-n-cities.git",
   "author": "ludico1959 <ludico1959@gmail.com>",
   "license": "MIT",
-  "script": {
+  "scripts": {
     "dev": "ts-node-dev --transpile-only src/app/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
   },
