@@ -1,3 +1,4 @@
+import "reflect-metadat";
 import express from "express";
 
 const app = express();

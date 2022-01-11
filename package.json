@@ -6,7 +6,8 @@
   "author": "ludico1959 <ludico1959@gmail.com>",
   "license": "MIT",
   "script": {
-    "dev": "ts-node-dev --transpile-only src/app/server.ts"
+    "dev": "ts-node-dev --transpile-only src/app/server.ts",
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "express": "^4.17.2",
