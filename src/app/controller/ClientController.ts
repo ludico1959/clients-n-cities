@@ -33,7 +33,7 @@ class ClientController {
                 }
             });
         } catch (error) {
-            return res.status(400).json({
+            return res.status(404).json({
                 status: "fail",
                 message: `${error}`
             });
@@ -51,7 +51,23 @@ class ClientController {
                 }
             });
         } catch (error) {
-            return res.status(400).json({
+            return res.status(404).json({
+                status: "fail",
+                message: `${error}`
+            });
+        }
+    }
+
+    async deleteById(req: Request, res: Response) {
+        try {
+            await clientService.deleteById(req.params.id);
+
+            return res.status(204).json({
+                status: "success",
+                data: null
+            });
+        } catch (error) {
+            return res.status(404).json({
                 status: "fail",
                 message: `${error}`
             });

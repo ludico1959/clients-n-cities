@@ -29,6 +29,12 @@ class ClientService {
 
         return result
     }
+    
+    async deleteById(payload: string): Promise<Client | Error> {
+        await clientRepository.deleteById(payload);
+
+        return null;
+    }
 }
 
 export { ClientService };

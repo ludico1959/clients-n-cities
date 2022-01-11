@@ -35,7 +35,13 @@ class ClientRepository {
         return client;
     }
 
+    async deleteById(payload: string): Promise<Client | Error> {
+        const repo = getRepository(Client);
 
+        repo.delete(payload);
+
+        return null;
+    }
 }
 
 export { ClientRepository };
