@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { v4 as uuid } from 'uuid';
-import { City } from '../entities/City';
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
+import { v4 as uuid } from "uuid";
+import { City } from "../entities/City";
 
 @Entity('clients')
 export class Client {
@@ -23,7 +23,7 @@ export class Client {
     city_id: string;
 
     @ManyToOne(() => City)
-    @JoinColumn({ name: 'city_id' })
+    @JoinColumn({ name: "city_id" })
     city: City;
 
 

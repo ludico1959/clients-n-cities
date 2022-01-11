@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-@Entity('cities')
+@Entity("cities")
 export class City {
     @PrimaryColumn()
     id: string;
