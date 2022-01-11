@@ -16,15 +16,15 @@ class CityController {
             });
         } catch (error) {
             return res.status(400).json({
-                status: "Fail",
-                message: error
+                status: "fail",
+                message: `${error}`
             });
         }
     }
 
-    async listAll(req: Request, res: Response) {
+    async list(req: Request, res: Response) {
         try {
-            const result = await cityService.listAll(req.body);
+            const result = await cityService.list(req.body);
 
             return res.status(200).json({
                 status: "success",
@@ -34,8 +34,8 @@ class CityController {
             });
         } catch (error) {
             return res.status(400).json({
-                status: "Fail",
-                message: error
+                status: "fail",
+                message: `${error}`
             });
         }
     }

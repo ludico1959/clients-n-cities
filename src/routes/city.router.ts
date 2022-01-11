@@ -3,7 +3,7 @@ import { CityController } from "../app/controller/CityController";
 
 const cityRouter = Router();
 
-cityRouter.post('/cities', new CityController().create);
-cityRouter.get('/cities', new CityController().listAll);
+cityRouter.post('/api/v1/cities', new CityController().create);
+cityRouter.get('/api/v1/cities', new CityController().list);
 
 export { cityRouter };

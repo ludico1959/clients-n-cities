@@ -16,9 +16,10 @@ class CityRepository {
         return city;
     }
 
-    async listAll(payload: CityRequest): Promise<City[] | Error> {
+    async list(payload: CityRequest): Promise<City[] | Error> {
         const repo = getRepository(City);
-        const cities = repo.find({ select: ["name", "state"] });
+
+        const cities = repo.find(payload);
 
         return cities;
     }

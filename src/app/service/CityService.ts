@@ -14,8 +14,8 @@ export class CityService {
         return result;
     }
 
-    async listAll(payload: CityRequest): Promise<City[] | Error> {
-        const result = await cityRepository.listAll(payload);
+    async list(payload: CityRequest): Promise<City[] | Error> {
+        const result = await cityRepository.list(payload);
 
         return result;
     }
