@@ -73,6 +73,24 @@ class ClientController {
             });
         }
     }
+
+    async updateName(req: Request, res: Response) {
+        try {
+            const result = await clientService.updateName(req.params.id, req.body.name);
+
+            return res.status(204).json({
+                status: "success",
+                data: {
+                    updatedClient: result
+                }
+            });
+        } catch (error) {
+            return res.status(400).json({
+                status: "fail",
+                message: `${error}`
+            });
+        }
+    }
 }
 
 export { ClientController };

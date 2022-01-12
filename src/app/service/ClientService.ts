@@ -3,16 +3,16 @@ import { Client } from "../entities/Client";
 
 const clientRepository = new ClientRepository();
 
-type ClientRequest = {
+type RequestClient = {
     name: string;
-    sex: string;
+    gender: string;
     birthdate: Date;
     age: number;
     city_id: string;
 }
 
 class ClientService {
-    async create(payload: ClientRequest): Promise<Client | Error> {
+    async create(payload: RequestClient): Promise<Client | Error> {
         const result = await clientRepository.create(payload);
 
         return result
@@ -34,6 +34,12 @@ class ClientService {
         await clientRepository.deleteById(payload);
 
         return null;
+    }
+
+    async updateName(id: string, name: string): Promise<Client | Error> {
+        const result = await clientRepository.updateName(id, name);
+
+        return result;
     }
 }
 

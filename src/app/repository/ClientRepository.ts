@@ -1,18 +1,18 @@
 import { getRepository } from "typeorm";
 import { Client } from "../entities/Client";
 
-type ClientRequest = {
+type RequestClient = {
     name: string;
-    sex: string;
+    gender: string;
     birthdate: Date;
     age: number;
     city_id: string;
 }
 
 class ClientRepository {
-    async create({ name, sex, birthdate, age, city_id }: ClientRequest): Promise<Client | Error> {
+    async create({ name, gender, birthdate, age, city_id }: RequestClient): Promise<Client | Error> {
         const repo = getRepository(Client);
-        const client = repo.create({ name, sex, birthdate, age, city_id });
+        const client = repo.create({ name, gender, birthdate, age, city_id });
 
         await repo.save(client); 
 
@@ -35,12 +35,24 @@ class ClientRepository {
         return client;
     }
 
-    async deleteById(payload: string): Promise<Client | Error> {
+    async deleteById(payload: string): Promise<null | Error> {
         const repo = getRepository(Client);
 
         repo.delete(payload);
 
         return null;
+    }
+
+    async updateName(id: string, name: string): Promise<Client | Error> {
+        const repo = getRepository(Client);
+
+        const client = await repo.findOne(id);
+
+        client.name = name ? name:client.name;
+
+        await repo.save(client);
+
+        return client;
     }
 }
 

@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { City } from "../entities/City";
 
 @Entity('clients')
+
 export class Client {
     @PrimaryColumn()
     id: string;
@@ -11,7 +12,7 @@ export class Client {
     name: string;
 
     @Column()
-    sex: string;
+    gender: string;
 
     @Column()
     birthdate: Date;
@@ -25,7 +26,6 @@ export class Client {
     @ManyToOne(() => City)
     @JoinColumn({ name: "city_id" })
     city: City;
-
 
     constructor() {
         if(!this.id) {
