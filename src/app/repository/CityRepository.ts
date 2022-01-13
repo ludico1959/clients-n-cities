@@ -1,28 +1,28 @@
-import { getRepository } from "typeorm";
-import { City } from "../entities/City";
+import { getRepository } from 'typeorm';
+import { City } from '../entities/City';
 
 type CityRequest = {
-    name: string;
-    state: string;
-}
+  name: string;
+  state: string;
+};
 
 class CityRepository {
-    async create({ name, state }: CityRequest): Promise<City | Error> {
-        const repo = getRepository(City);
-        const city = repo.create({ name, state });
-        
-        await repo.save(city);
+  async create({ name, state }: CityRequest): Promise<City | Error> {
+    const repo = getRepository(City);
+    const city = repo.create({ name, state });
 
-        return city;
-    }
+    await repo.save(city);
 
-    async list(payload: CityRequest): Promise<City[] | Error> {
-        const repo = getRepository(City);
+    return city;
+  }
 
-        const cities = repo.find(payload);
+  async list(payload: CityRequest): Promise<City[] | Error> {
+    const repo = getRepository(City);
 
-        return cities;
-    }
+    const cities = repo.find(payload);
+
+    return cities;
+  }
 }
 
 export { CityRepository };

@@ -1,46 +1,46 @@
-import { ClientRepository } from "../repository/ClientRepository";
-import { Client } from "../entities/Client";
+import { ClientRepository } from '../repository/ClientRepository';
+import { Client } from '../entities/Client';
 
 const clientRepository = new ClientRepository();
 
 type RequestClient = {
-    name: string;
-    gender: string;
-    birthdate: Date;
-    age: number;
-    city_id: string;
-}
+  name: string;
+  gender: string;
+  birthdate: Date;
+  age: number;
+  cityId: string;
+};
 
 class ClientService {
-    async create(payload: RequestClient): Promise<Client | Error> {
-        const result = await clientRepository.create(payload);
+  async create(payload: RequestClient): Promise<Client | Error> {
+    const result = await clientRepository.create(payload);
 
-        return result
-    }
+    return result;
+  }
 
-    async listById(payload: string): Promise<Client | Error> {
-        const result = await clientRepository.listById(payload);
+  async listById(payload: string): Promise<Client | Error> {
+    const result = await clientRepository.listById(payload);
 
-        return result
-    }
-    
-    async listByName(payload: Object): Promise<Client | Error> {
-        const result = await clientRepository.listByName(payload);
+    return result;
+  }
 
-        return result
-    }
-    
-    async deleteById(payload: string): Promise<Client | Error> {
-        await clientRepository.deleteById(payload);
+  async listByName(payload: string): Promise<Client | Error> {
+    const result = await clientRepository.listByName(payload);
 
-        return null;
-    }
+    return result;
+  }
 
-    async updateName(id: string, name: string): Promise<Client | Error> {
-        const result = await clientRepository.updateName(id, name);
+  async deleteById(payload: string): Promise<Client | Error> {
+    await clientRepository.deleteById(payload);
 
-        return result;
-    }
+    return null;
+  }
+
+  async updateName(id: string, name: string): Promise<Client | Error> {
+    const result = await clientRepository.updateName(id, name);
+
+    return result;
+  }
 }
 
 export { ClientService };
