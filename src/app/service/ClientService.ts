@@ -1,7 +1,9 @@
 import { ClientRepository } from '../repository/ClientRepository';
 import { Client } from '../entities/Client';
+import { Age } from '../middleware/calculateAge';
 
 const clientRepository = new ClientRepository();
+const age = new Age();
 
 type RequestClient = {
   name: string;
@@ -13,7 +15,11 @@ type RequestClient = {
 
 class ClientService {
   async create(payload: RequestClient): Promise<Client | Error> {
-    const result = await clientRepository.create(payload);
+    const payloadWithAge = payload;
+
+    payloadWithAge.age = age.calculateAge(payload.birthdate);
+
+    const result = await clientRepository.create(payloadWithAge);
 
     return result;
   }
