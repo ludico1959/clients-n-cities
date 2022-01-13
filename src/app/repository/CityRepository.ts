@@ -4,6 +4,8 @@ import { City } from '../entities/City';
 type CityRequest = {
   name: string;
   state: string;
+  page: number;
+  limit: number;
 };
 
 class CityRepository {
@@ -16,12 +18,18 @@ class CityRepository {
     return city;
   }
 
-  async list(payload: CityRequest): Promise<City[] | Error> {
+  async list({ page = 1, limit = 2, ...query }): Promise<{} | Error> {
     const repo = getRepository(City);
 
-    const cities = repo.find(payload);
+    const [list, count] = await repo.findAndCount({
+      where: query,
+      order: {
+        name: 'ASC'
+      },
+      take: limit
+    });
 
-    return cities;
+    return { list, totalCities: count, limit, offset: page, offsets: Math.ceil(count / limit) };
   }
 }
 

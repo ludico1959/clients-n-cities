@@ -6,6 +6,8 @@ const cityRepository = new CityRepository();
 type CityRequest = {
   name: string;
   state: string;
+  page: number;
+  limit: number;
 };
 
 export class CityService {
@@ -14,7 +16,7 @@ export class CityService {
     return result;
   }
 
-  async list(payload: CityRequest): Promise<City[] | Error> {
+  async list(payload: CityRequest): Promise<{} | Error> {
     const result = await cityRepository.list(payload);
 
     return result;

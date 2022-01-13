@@ -24,7 +24,25 @@ class CityController {
 
   async list(req: Request, res: Response) {
     try {
-      const result = await cityService.list(req.body);
+      const result = await cityService.list(req.query);
+
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          cities: result
+        }
+      });
+    } catch (error) {
+      return res.status(404).json({
+        status: 'fail',
+        message: `${error}`
+      });
+    }
+  }
+
+  async listByState(req: Request, res: Response) {
+    try {
+      const result = await cityService.list(req.query);
 
       return res.status(200).json({
         status: 'success',
