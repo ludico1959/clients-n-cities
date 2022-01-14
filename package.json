@@ -13,13 +13,14 @@
   },
   "dependencies": {
     "express": "^4.17.2",
+    "joi": "^17.5.0",
     "moment": "^2.29.1",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.41",
-    "uuid": "^8.3.2"
+    "typeorm": "^0.2.41"
   },
   "devDependencies": {
+    "@joi/date": "^2.1.0",
     "@types/express": "^4.17.13",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
