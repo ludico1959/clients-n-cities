@@ -15,10 +15,7 @@ class CityController {
         }
       });
     } catch (error) {
-      return res.status(400).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(400).json(error);
     }
   }
 
@@ -33,10 +30,7 @@ class CityController {
         }
       });
     } catch (error) {
-      return res.status(404).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(404).json(error);
     }
   }
 
@@ -51,10 +45,7 @@ class CityController {
         }
       });
     } catch (error) {
-      return res.status(404).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(404).json(error);
     }
   }
 }
