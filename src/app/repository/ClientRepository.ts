@@ -1,5 +1,8 @@
 import { getRepository } from 'typeorm';
 import { Client } from '../entities/Client';
+import { FormatDate } from '../middleware/formatDate';
+
+const formatDate = new FormatDate();
 
 type RequestClient = {
   name: string;
@@ -23,6 +26,8 @@ class ClientRepository {
     const repo = getRepository(Client);
 
     const client = repo.findOne(payload);
+    (await client).birthdate = formatDate.formatDateToRequest((await client).birthdate);
+    console.log(typeof (await client).birthdate);
 
     return client;
   }
@@ -31,6 +36,7 @@ class ClientRepository {
     const repo = getRepository(Client);
 
     const client = repo.findOne(payload);
+    (await client).birthdate = formatDate.formatDateToRequest((await client).birthdate);
 
     return client;
   }
