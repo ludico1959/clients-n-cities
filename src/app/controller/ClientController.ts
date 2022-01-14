@@ -15,10 +15,7 @@ class ClientController {
         }
       });
     } catch (error) {
-      return res.status(400).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(400).json(error);
     }
   }
 
@@ -33,16 +30,13 @@ class ClientController {
         }
       });
     } catch (error) {
-      return res.status(404).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(404).json(error);
     }
   }
 
   async listByName(req: Request, res: Response) {
     try {
-      const result = await clientService.listByName(req.body);
+      const result = await clientService.listByName(req.query);
 
       return res.status(200).json({
         status: 'success',
@@ -51,10 +45,7 @@ class ClientController {
         }
       });
     } catch (error) {
-      return res.status(404).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(404).json(error);
     }
   }
 
@@ -67,10 +58,7 @@ class ClientController {
         data: null
       });
     } catch (error) {
-      return res.status(404).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(404).json(error);
     }
   }
 
@@ -85,10 +73,7 @@ class ClientController {
         }
       });
     } catch (error) {
-      return res.status(400).json({
-        status: 'fail',
-        message: `${error}`
-      });
+      return res.status(400).json(error);
     }
   }
 }

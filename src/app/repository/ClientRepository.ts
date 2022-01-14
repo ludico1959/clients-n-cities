@@ -1,8 +1,5 @@
 import { getRepository } from 'typeorm';
 import { Client } from '../entities/Client';
-import { FormatDate } from '../middleware/formatDate';
-
-const formatDate = new FormatDate();
 
 type RequestClient = {
   name: string;
@@ -25,9 +22,7 @@ class ClientRepository {
   async listById(payload: string): Promise<Client | Error> {
     const repo = getRepository(Client);
 
-    const client = repo.findOne(payload);
-    (await client).birthdate = formatDate.formatDateToRequest((await client).birthdate);
-    console.log(typeof (await client).birthdate);
+    const client = await repo.findOne(payload);
 
     return client;
   }
@@ -35,8 +30,7 @@ class ClientRepository {
   async listByName(payload: string): Promise<Client | Error> {
     const repo = getRepository(Client);
 
-    const client = repo.findOne(payload);
-    (await client).birthdate = formatDate.formatDateToRequest((await client).birthdate);
+    const client = await repo.findOne(payload);
 
     return client;
   }

@@ -1,9 +1,13 @@
 import { ClientRepository } from '../repository/ClientRepository';
 import { Client } from '../entities/Client';
 import { Age } from '../middleware/calculateAge';
+import { FormatDate } from '../middleware/formatDate';
+import { ClientIdNotFound } from '../errors/client/ClientIdNotfound';
+import { ClientNameNotFound } from '../errors/client/ClientNameNotfound';
 
 const clientRepository = new ClientRepository();
 const age = new Age();
+const formatDate = new FormatDate();
 
 type RequestClient = {
   name: string;
@@ -27,11 +31,19 @@ class ClientService {
   async listById(payload: string): Promise<Client | Error> {
     const result = await clientRepository.listById(payload);
 
+    if (!result) throw new ClientIdNotFound(payload);
+
+    result.birthdate = formatDate.formatDateToRequest(result.birthdate);
+
     return result;
   }
 
   async listByName(payload: string): Promise<Client | Error> {
     const result = await clientRepository.listByName(payload);
+
+    if (!result) throw new ClientNameNotFound(payload.name);
+
+    result.birthdate = formatDate.formatDateToRequest(result.birthdate);
 
     return result;
   }
