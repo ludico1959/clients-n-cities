@@ -1,12 +1,18 @@
 import { Request, Response } from 'express';
-import { CityService } from '../service/CityService';
+import { CityRepository } from '../repository/CityRepository';
+import { CreateCityService } from '../service/CreateCityService';
+import { ListCitiesByStateService } from '../service/ListCitiesByStateService';
+import { FindCityByNameService } from '../service/FindCityByNameService';
 
-const cityService = new CityService();
+const cityRepository = new CityRepository();
+const createCityService = new CreateCityService(cityRepository);
+const listCitiesByStateService = new ListCitiesByStateService(cityRepository);
+const findCityByNameService = new FindCityByNameService(cityRepository);
 
 class CityController {
   async create(req: Request, res: Response) {
     try {
-      const result = await cityService.create(req.body);
+      const result = await createCityService.execute(req.body);
 
       return res.status(201).json({
         status: 'success',
@@ -19,9 +25,9 @@ class CityController {
     }
   }
 
-  async list(req: Request, res: Response) {
+  async listByState(req: Request, res: Response) {
     try {
-      const result = await cityService.list(req.query);
+      const result = await listCitiesByStateService.execute(req.params.state);
 
       return res.status(200).json({
         status: 'success',
@@ -34,9 +40,9 @@ class CityController {
     }
   }
 
-  async listByState(req: Request, res: Response) {
+  async findByName(req: Request, res: Response) {
     try {
-      const result = await cityService.list(req.query);
+      const result = await findCityByNameService.execute(req.params.name);
 
       return res.status(200).json({
         status: 'success',

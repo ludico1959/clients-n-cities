@@ -6,7 +6,7 @@ import createClientValidation from '../app/validations/client/createClient';
 const clientRouter = Router();
 
 clientRouter.post('/api/v1/clients', createClientValidation, new ClientController().create);
-clientRouter.get('/api/v1/clients/:name', new ClientController().findByName);
+clientRouter.get('/api/v1/clients/name/:name', new ClientController().findByName);
 clientRouter.get('/api/v1/clients/:id', new ClientController().findById);
 clientRouter.delete('/api/v1/clients/:id', new ClientController().deleteById);
 clientRouter.put('/api/v1/clients/:id', updateClientValidation, new ClientController().updateName);

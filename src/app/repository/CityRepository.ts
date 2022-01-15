@@ -1,15 +1,9 @@
 import { getRepository } from 'typeorm';
 import { City } from '../entities/City';
+import { ICityRepository, ICreateCityDTO, IListCityByStateDTO } from './ICityRepository';
 
-type CityRequest = {
-  name: string;
-  state: string;
-  page: number;
-  limit: number;
-};
-
-class CityRepository {
-  async create({ name, state }: CityRequest): Promise<City | Error> {
+class CityRepository implements ICityRepository {
+  async create({ name, state }: ICreateCityDTO): Promise<City> {
     const repo = getRepository(City);
     const city = repo.create({ name, state });
 
@@ -18,11 +12,13 @@ class CityRepository {
     return city;
   }
 
-  async list({ page = 1, limit = 2, ...query }): Promise<{} | Error> {
+  async listByState({ page = 1, limit = 2, state }: IListCityByStateDTO): Promise<{}> {
     const repo = getRepository(City);
 
     const [list, count] = await repo.findAndCount({
-      where: query,
+      where: {
+        state
+      },
       order: {
         name: 'ASC'
       },
@@ -31,6 +27,14 @@ class CityRepository {
 
     return { list, totalCities: count, limit, offset: page, offsets: Math.ceil(count / limit) };
   }
+
+  async findByName(name: string): Promise<City> {
+    const repo = getRepository(City);
+
+    const city = await repo.findOne({ name });
+
+    return city;
+  }
 }
 
-export default new CityRepository();
+export { CityRepository };

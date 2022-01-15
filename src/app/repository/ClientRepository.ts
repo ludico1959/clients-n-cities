@@ -31,7 +31,7 @@ class ClientRepository implements IClientRepository {
   async deleteById(id: string): Promise<null> {
     const repo = getRepository(Client);
 
-    repo.delete(id);
+    await repo.delete(id);
 
     return null;
   }
@@ -41,7 +41,7 @@ class ClientRepository implements IClientRepository {
 
     const client = await repo.findOne({ id });
 
-    client.name = name || client.name;
+    client.name = name;
 
     await repo.save(client);
 
