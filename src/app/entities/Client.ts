@@ -27,6 +27,8 @@ export class Client {
   city: City;
 
   constructor() {
-    this.id = randomUUID();
+    if (!this.id) {
+      this.id = randomUUID();
+    }
   }
 }

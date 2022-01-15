@@ -11,7 +11,7 @@ class FindClientByIdService {
   }
 
   async execute(id: string): Promise<Client | Error> {
-    const result = await this.clientRepository.findByName(id);
+    const result = await this.clientRepository.findById(id);
 
     if (!result) throw new ClientIdNotFound(id);
 

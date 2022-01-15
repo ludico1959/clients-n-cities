@@ -13,6 +13,8 @@ export class City {
   state: string;
 
   constructor() {
-    this.id = randomUUID();
+    if (!this.id) {
+      this.id = randomUUID();
+    }
   }
 }
