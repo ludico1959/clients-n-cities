@@ -1,12 +1,22 @@
 import { Request, Response } from 'express';
-import { ClientService } from '../service/ClientService';
+import { ClientRepository } from '../repository/ClientRepository';
+import { CreateClientService } from '../service/CreateClientService';
+import { FindClientByNameService } from '../service/FindClientByNameService';
+import { FindClientByIdService } from '../service/FindClientByIdService';
+import { DeleteClientService } from '../service/DeleteClientService';
+import { UpdateClientName } from '../service/UpdateClientNameService';
 
-const clientService = new ClientService();
+const clientRepository = new ClientRepository();
+const createClientService = new CreateClientService(clientRepository);
+const findClientByNameService = new FindClientByNameService(clientRepository);
+const findClientByIdService = new FindClientByIdService(clientRepository);
+const deleteClientService = new DeleteClientService(clientRepository);
+const updateClientName = new UpdateClientName(clientRepository);
 
 class ClientController {
   async create(req: Request, res: Response) {
     try {
-      const result = await clientService.create(req.body);
+      const result = await createClientService.execute(req.body);
 
       return res.status(201).json({
         status: 'success',
@@ -19,9 +29,9 @@ class ClientController {
     }
   }
 
-  async listById(req: Request, res: Response) {
+  async findByName(req: Request, res: Response) {
     try {
-      const result = await clientService.listById(req.params.id);
+      const result = await findClientByNameService.execute(req.params.name);
 
       return res.status(200).json({
         status: 'success',
@@ -34,9 +44,9 @@ class ClientController {
     }
   }
 
-  async listByName(req: Request, res: Response) {
+  async findById(req: Request, res: Response) {
     try {
-      const result = await clientService.listByName(req.query);
+      const result = await findClientByIdService.execute(req.params.id);
 
       return res.status(200).json({
         status: 'success',
@@ -51,7 +61,7 @@ class ClientController {
 
   async deleteById(req: Request, res: Response) {
     try {
-      await clientService.deleteById(req.params.id);
+      await deleteClientService.execute(req.params.id);
 
       return res.status(204).json({
         status: 'success',
@@ -64,7 +74,7 @@ class ClientController {
 
   async updateName(req: Request, res: Response) {
     try {
-      const result = await clientService.updateName(req.params.id, req.body.name);
+      const result = await updateClientName.execute(req.params.id, req.body.name);
 
       return res.status(204).json({
         status: 'success',

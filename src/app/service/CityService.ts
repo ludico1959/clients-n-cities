@@ -1,28 +1,27 @@
-import { CityRepository } from '../repository/CityRepository';
+import CityRepository from '../repository/CityRepository';
 import { City } from '../entities/City';
 import { InvalidQuery } from '../errors/city/InvalidQuery';
-import { invalid } from 'moment';
 
-const cityRepository = new CityRepository();
-
-type CityRequest = {
+interface CityRequest {
   name: string;
   state: string;
   page: number;
   limit: number;
-};
+}
 
-export class CityService {
+class CityService {
   async create(payload: CityRequest): Promise<City | Error> {
-    const result = await cityRepository.create(payload);
+    const result = await CityRepository.create(payload);
     return result;
   }
 
   async list(payload: CityRequest): Promise<{} | Error> {
     if (!(payload.name || payload.state)) throw new InvalidQuery();
 
-    const result = await cityRepository.list(payload);
+    const result = await CityRepository.list(payload);
 
     return result;
   }
 }
+
+export { CityService };

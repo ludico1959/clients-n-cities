@@ -33,4 +33,4 @@ class CityRepository {
   }
 }
 
-export { CityRepository };
+export default new CityRepository();

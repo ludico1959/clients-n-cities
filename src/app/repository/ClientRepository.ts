@@ -1,16 +1,9 @@
 import { getRepository } from 'typeorm';
 import { Client } from '../entities/Client';
+import { IClientRepository, ICreateClientDTO } from './IClientRepository';
 
-type RequestClient = {
-  name: string;
-  gender: string;
-  birthdate: Date;
-  age: number;
-  cityId: string;
-};
-
-class ClientRepository {
-  async create({ name, gender, birthdate, age, cityId }: RequestClient): Promise<Client | Error> {
+class ClientRepository implements IClientRepository {
+  async create({ name, gender, birthdate, age, cityId }: ICreateClientDTO): Promise<Client> {
     const repo = getRepository(Client);
     const client = repo.create({ name, gender, birthdate, age, cityId });
 
@@ -19,34 +12,34 @@ class ClientRepository {
     return client;
   }
 
-  async listById(payload: string): Promise<Client | Error> {
+  async findById(id: string): Promise<Client> {
     const repo = getRepository(Client);
 
-    const client = await repo.findOne(payload);
+    const client = await repo.findOne({ id });
 
     return client;
   }
 
-  async listByName(payload: string): Promise<Client | Error> {
+  async findByName(name: string): Promise<Client> {
     const repo = getRepository(Client);
 
-    const client = await repo.findOne(payload);
+    const client = await repo.findOne({ name });
 
     return client;
   }
 
-  async deleteById(payload: string): Promise<null | Error> {
+  async deleteById(id: string): Promise<null> {
     const repo = getRepository(Client);
 
-    repo.delete(payload);
+    repo.delete(id);
 
     return null;
   }
 
-  async updateName(id: string, name: string): Promise<Client | Error> {
+  async updateName(id: string, name: string): Promise<Client> {
     const repo = getRepository(Client);
 
-    const client = await repo.findOne(id);
+    const client = await repo.findOne({ id });
 
     client.name = name || client.name;
 
