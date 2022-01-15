@@ -14,7 +14,7 @@ const deleteClientService = new DeleteClientService(clientRepository);
 const updateClientName = new UpdateClientName(clientRepository);
 
 class ClientController {
-  async create(req: Request, res: Response) {
+  async create(req: Request, res: Response): Promise<Response> {
     try {
       const result = await createClientService.execute(req.body);
 
@@ -29,7 +29,7 @@ class ClientController {
     }
   }
 
-  async findByName(req: Request, res: Response) {
+  async findByName(req: Request, res: Response): Promise<Response> {
     try {
       const result = await findClientByNameService.execute(req.params.name);
 
@@ -44,7 +44,7 @@ class ClientController {
     }
   }
 
-  async findById(req: Request, res: Response) {
+  async findById(req: Request, res: Response): Promise<Response> {
     try {
       const result = await findClientByIdService.execute(req.params.id);
 
@@ -59,7 +59,7 @@ class ClientController {
     }
   }
 
-  async deleteById(req: Request, res: Response) {
+  async deleteById(req: Request, res: Response): Promise<Response> {
     try {
       await deleteClientService.execute(req.params.id);
 
@@ -72,7 +72,7 @@ class ClientController {
     }
   }
 
-  async updateName(req: Request, res: Response) {
+  async updateName(req: Request, res: Response): Promise<Response> {
     try {
       const result = await updateClientName.execute(req.params.id, req.body.name);
 

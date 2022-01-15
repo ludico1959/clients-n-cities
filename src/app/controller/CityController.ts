@@ -10,7 +10,7 @@ const listCitiesByStateService = new ListCitiesByStateService(cityRepository);
 const findCityByNameService = new FindCityByNameService(cityRepository);
 
 class CityController {
-  async create(req: Request, res: Response) {
+  async create(req: Request, res: Response): Promise<Response> {
     try {
       const result = await createCityService.execute(req.body);
 
@@ -25,7 +25,7 @@ class CityController {
     }
   }
 
-  async listByState(req: Request, res: Response) {
+  async listByState(req: Request, res: Response): Promise<Response> {
     try {
       const result = await listCitiesByStateService.execute(req.params.state);
 
@@ -40,7 +40,7 @@ class CityController {
     }
   }
 
-  async findByName(req: Request, res: Response) {
+  async findByName(req: Request, res: Response): Promise<Response> {
     try {
       const result = await findCityByNameService.execute(req.params.name);
 

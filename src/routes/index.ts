@@ -2,9 +2,9 @@ import { Router } from 'express';
 import { cityRouter } from './city.routes';
 import { clientRouter } from './client.routes';
 
-const routes = Router();
+const router = Router();
 
-routes.use(cityRouter);
-routes.use(clientRouter);
+router.use(cityRouter);
+router.use(clientRouter);
 
-export { routes };
+export { router };
