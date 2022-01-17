@@ -31,7 +31,7 @@ This API RESTful includes the four basic CRUD operations and it is about a relat
 - Postman v8.12.5 (for testing endpoits).
 
 ## 💻 Run locally
----
+
 If you want to run the project on your local machine, just follow the steps below:
 
 ### 1️⃣ Starting...
@@ -73,10 +73,11 @@ node src/app/server.js
 ```
 
 ##  📬  Using the application 
----
+
 I will put here two options for using this API: 
 
 ### 🧮 SWAGGER UI
+
 The first one, using Swagger UI, is more user friendly. To use it, just type the following route in the seach bar of your favorite brownser!
 
 ```
@@ -84,6 +85,7 @@ http://localhost:3000/api/v1/api-docs/
 ```
 
 ### 📮  POSTMAN
+
 The second one is not so user friendly, so I strong recommeded using the Swagger UI option above. But, as long as I was using Postman while I was creating the endpoints, I think it is valid to keep it and even a similar program called Insomnia as options. 
 For using it, just import the **postman_collection.json** from inside the test folder. 
 
@@ -91,5 +93,5 @@ For using it, just import the **postman_collection.json** from inside the test f
 * **Insomnia**: [download here](https://insomnia.rest/download).
 
 ## 📡 Run remotely
----
+
 To be updated...
