@@ -4,3 +4,4 @@ ormconfig.json
 .editorconfig
 yarn-error.log
 .vscode
+coverage

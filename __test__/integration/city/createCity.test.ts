@@ -26,8 +26,8 @@ describe('src :: api :: controllers :: city :: create', () => {
     const { body } = response;
 
     expect(response.status).toBe(201);
-    expect(body.id).toBeDefined();
-    expect(body.name).toBe('Acrelândia');
-    expect(body.state).toBe('AC');
+    expect(body.data.createdCity.id).toBeDefined();
+    expect(body.data.createdCity.name).toBe('Acrelândia');
+    expect(body.data.createdCity.state).toBe('AC');
   });
 });
