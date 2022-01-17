@@ -81,9 +81,10 @@ I will put here two options for using this API:
 #### 🧮 Swagger UI
 
 The first one, using Swagger UI, is more user friendly. To use it, just type the following route in the seach bar of your favorite brownser!
+But wait! It is import to notice that maybe you will have to change some information on this url, like the port number 3333, for example.
 
 ```
-http://localhost:3000/api/v1/api-docs/
+http://localhost:3333/api/v1/api-docs/
 ```
 
 #### 📮 Postman
