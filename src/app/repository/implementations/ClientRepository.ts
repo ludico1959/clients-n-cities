@@ -1,10 +1,10 @@
-import { getRepository } from 'typeorm';
-import { Client } from '../entities/Client';
-import { IClientRepository, ICreateClientDTO } from './IClientRepository';
+import { getConnection } from 'typeorm';
+import { Client } from '../../entities/Client';
+import { IClientRepository, ICreateClientDTO } from '../IClientRepository';
 
 class ClientRepository implements IClientRepository {
   async create({ name, gender, birthdate, age, cityId }: ICreateClientDTO): Promise<Client> {
-    const repo = getRepository(Client);
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
     const client = repo.create({ name, gender, birthdate, age, cityId });
 
     await repo.save(client);
@@ -13,7 +13,7 @@ class ClientRepository implements IClientRepository {
   }
 
   async findById(id: string): Promise<Client> {
-    const repo = getRepository(Client);
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
 
     const client = await repo.findOne({ id });
 
@@ -21,7 +21,7 @@ class ClientRepository implements IClientRepository {
   }
 
   async findByName(name: string): Promise<Client> {
-    const repo = getRepository(Client);
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
 
     const client = await repo.findOne({ name });
 
@@ -29,7 +29,7 @@ class ClientRepository implements IClientRepository {
   }
 
   async deleteById(id: string): Promise<null> {
-    const repo = getRepository(Client);
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
 
     await repo.delete(id);
 
@@ -37,7 +37,7 @@ class ClientRepository implements IClientRepository {
   }
 
   async updateName(id: string, name: string): Promise<Client> {
-    const repo = getRepository(Client);
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
 
     const client = await repo.findOne({ id });
 

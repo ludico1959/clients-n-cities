@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ClientRepository } from '../repository/ClientRepository';
+import { ClientRepository } from '../repository/implementations/ClientRepository';
 import { CreateClientService } from '../service/CreateClientService';
 import { FindClientByNameService } from '../service/FindClientByNameService';
 import { FindClientByIdService } from '../service/FindClientByIdService';

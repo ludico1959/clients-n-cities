@@ -28,6 +28,10 @@
     "no-console": "off",
     "class-methods-use-this":"off",
     "import/prefer-default-export": "off",
-    "no-plusplus": "off"
+    "import/namespace": "off",
+    "no-plusplus": "off",
+    "no-shadow": "off",
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off"
   }
 }

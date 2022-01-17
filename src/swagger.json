@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3333",
+      "url": "http://localhost:3333/api/v1/",
       "description": "Base URL"
     }
   ],
@@ -193,7 +193,7 @@
     },
     "/cities": {
       "post": {
-        "summary": "Insert client into the database",
+        "summary": "Insert city into the database",
         "description": "This route uses req.body to get information about the city and insert into the database.",
         "tags": [
           "City"
@@ -207,7 +207,7 @@
               "examples": {
                 "city": {
                   "value": {
-                    "name": "Rio Grande",
+                    "name": "Bagé",
                     "state": "RS"
                   }
                 }
@@ -217,7 +217,7 @@
         },
         "responses": {
           "201": {
-            "description": "Client was successful created",
+            "description": "City was successful created",
             "content": {
               "application/json": {
                 "schema": {
@@ -232,7 +232,7 @@
         }
       }
     },
-    "/city/name/{name}": {
+    "/cities/name/{name}": {
       "get": {
         "summary": "Find city by its name",
         "description": "This route uses req.params.name and returns a city with its informations from the database based on its param.",
@@ -262,7 +262,7 @@
         ]
       }
     },
-    "/city/state/{state}": {
+    "/cities/state/{state}": {
       "get": {
         "summary": "Find list of cities by its state",
         "description": "This route uses req.params.state and returns a list of cities with its informations from the database based on its param.",

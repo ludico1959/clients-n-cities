@@ -1,39 +1,47 @@
-version: "3.5"
+version: "3.7"
 
 services:
-  app:
-    build: .
-    container_name: clients-n-cities
-    ports:
-      - 3333:3333
-    volumes:
-      - .:/usr/app
-
-  postgres-compose:
+  database_pg:
     image: postgres
-    environment:
-      POSTGRES_USERNAME: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      POSTGRES_DB: "clients_n_cities"
+    container_name: database_pg
+    restart: always
     ports:
-      - "5432:5432"
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
     volumes:
-      - /home/duducp/PostgreSQL:/var/lib/postgresql/data
+      - pgdata:/data/postgres
     networks:
-      - postgres-compose-network
+      - pg-network
 
-  pgadmin-compose:
+  database_pgadmin:
     image: dpage/pgadmin4
+    container_name: database_pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: "postgres@email.com"
       PGADMIN_DEFAULT_PASSWORD: "postgres"
     ports:
       - "15432:80"
     depends_on:
-      - postgres-compose
+      - database_pg
     networks:
-      - postgres-compose-network
+      - pg-network
+
+  app:
+    build: .
+    container_name: clients_n_cities
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    networks:
+      - pg-network
+
+volumes:
+  pgdata:
+    driver: local
 
 networks:
-  postgres-compose-network:
+  pg-network:
     driver: bridge

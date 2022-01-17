@@ -4,5 +4,3 @@ ormconfig.json
 .editorconfig
 yarn-error.log
 .vscode
-jest.config.ts
-__test__

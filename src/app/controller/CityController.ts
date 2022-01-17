@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CityRepository } from '../repository/CityRepository';
+import { CityRepository } from '../repository/implementations/CityRepository';
 import { CreateCityService } from '../service/CreateCityService';
 import { ListCitiesByStateService } from '../service/ListCitiesByStateService';
 import { FindCityByNameService } from '../service/FindCityByNameService';
