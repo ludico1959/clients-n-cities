@@ -16,7 +16,7 @@ afterAll(async () => {
   }
 });
 
-describe('src :: api :: controllers :: city :: create', () => {
+describe('src :: api :: controllers :: city :: listByState', () => {
   test('should return a list of cities from a state and must have a pagination', async () => {
     const mockState = 'MT';
 
@@ -33,11 +33,11 @@ describe('src :: api :: controllers :: city :: create', () => {
     await request(app).post('/api/v1/cities').send(mockCity01);
     await request(app).post('/api/v1/cities').send(mockCity02);
 
-    const response = await request(app).get(`/api/v1/cities/state/${mockState}`);
+    const response = await request(app).get(`/api/v1/cities/state/${mockState}`).query({ state: mockState });
 
     const { body } = response;
 
     expect(response.status).toBe(200);
-    body.data.cities.forEach((city: { state: any }) => expect(city.state).toBe(mockState));
+    body.data.cities.list.forEach((city: { state: any }) => expect(city.state).toBe(mockState));
   });
 });
