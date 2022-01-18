@@ -17,19 +17,27 @@ afterAll(async () => {
 });
 
 describe('src :: api :: controllers :: city :: create', () => {
-  test('should create a city', async () => {
-    const mockCity = {
-      name: 'Acrelândia',
-      state: 'AC'
+  test('should return a list of cities from a state and must have a pagination', async () => {
+    const mockState = 'MT';
+
+    const mockCity01 = {
+      name: 'Cuiabá',
+      state: 'MT'
     };
 
-    const response = await request(app).post('/api/v1/cities').send(mockCity);
+    const mockCity02 = {
+      name: 'Lucas do Rio Verde',
+      state: 'MT'
+    };
+
+    await request(app).post('/api/v1/cities').send(mockCity01);
+    await request(app).post('/api/v1/cities').send(mockCity02);
+
+    const response = await request(app).get(`/api/v1/cities/state/${mockState}`);
 
     const { body } = response;
 
-    expect(response.status).toBe(201);
-    expect(body.data.createdCity.id).toBeDefined();
-    expect(body.data.createdCity.name).toBe('Acrelândia');
-    expect(body.data.createdCity.state).toBe('AC');
+    expect(response.status).toBe(200);
+    body.data.cities.forEach((city: { state: any }) => expect(city.state).toBe(mockState));
   });
 });

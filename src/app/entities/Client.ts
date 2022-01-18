@@ -5,26 +5,26 @@ import { City } from './City';
 @Entity('clients')
 export class Client {
   @PrimaryColumn()
-  id: string;
+  id!: string;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  gender: string;
+  gender!: string;
 
   @Column()
-  birthdate: Date;
+  birthdate!: Date;
 
   @Column()
-  age: number;
+  age!: number;
 
   @Column()
-  cityId: string;
+  cityId!: string;
 
   @ManyToOne(() => City)
   @JoinColumn({ name: 'cityId' })
-  city: City;
+  city!: City;
 
   constructor() {
     if (!this.id) {

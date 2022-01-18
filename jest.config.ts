@@ -7,7 +7,7 @@
  */
 
 export default {
-  bail: true,
+  // bail: true,
 
   preset: 'ts-jest',
 
