@@ -14,9 +14,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
 
       birthdate: JoiDate.date().format('DD/MM/YYYY').required(),
 
-      cityId: Joi.string()
-        .required()
-        .regex(/[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}/)
+      cityId: Joi.string().uuid().required()
     });
 
     const { error } = entity.validate(req.body, { abortEarly: false });
