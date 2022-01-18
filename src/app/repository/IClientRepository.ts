@@ -3,7 +3,7 @@ import { Client } from '../entities/Client';
 interface ICreateClientDTO {
   name: string;
   gender: string;
-  birthdate: Date;
+  birthdate: string;
   age: number;
   cityId: string;
 }

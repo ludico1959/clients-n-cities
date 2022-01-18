@@ -1,20 +1,17 @@
-class Age {
-  calculateAge(birthdate: Date) {
-    const [birthDay, birthMonth, birthYear] = birthdate.toString().split('/');
+import moment from 'moment';
 
-    const currentDate = new Date();
+class GetAge {
+  calculateAge(birthdate: string) {
+    let date = birthdate;
 
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDate();
-    let age = currentYear - Number(birthYear);
+    date = moment(date, 'DD/MM/YYYY').format('DD/MM/YYYY');
 
-    if (currentMonth < Number(birthMonth) - 1) age--;
+    date = moment(date, 'DD/MM/YYYY').toISOString();
 
-    if (Number(birthMonth) - 1 === currentMonth && Number(currentDay) < Number(birthDay)) age--;
+    const age = moment().diff(date, 'years');
 
     return age;
   }
 }
 
-export { Age };
+export { GetAge };

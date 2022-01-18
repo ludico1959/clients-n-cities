@@ -25,12 +25,12 @@ describe('src :: api :: controllers :: client :: create', () => {
 
     let response = await request(app).post('/api/v1/cities').send(mockCity);
 
-    const { id } = await cityResponse.body.data.createdCity;
+    const { id } = await response.body.data.createdCity;
 
     const mockClient = {
       name: 'Pedro Geromel',
       gender: 'M',
-      birthdate: '1985-09-21',
+      birthdate: '21/09/1985',
       cityId: id
     };
 
