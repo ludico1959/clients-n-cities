@@ -32,7 +32,7 @@
                 "person": {
                   "value": {
                     "name": "Garry Kasparov",
-                    "sex": "M",
+                    "gender": "M",
                     "birthday": "01/01/2000",
                     "city_id": "kasparov@email.com"
                   }

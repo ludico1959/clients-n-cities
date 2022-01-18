@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { CityController } from '../app/controller/CityController';
-import createCityValidation from '../app/validations/city/createCity';
+import createCityValidation from '../app/validations/city/createCityValidation';
 
 const cityRouter = Router();
 

@@ -32,4 +32,15 @@ describe('src :: api :: controllers :: city :: create', () => {
     expect(body.data.createdCity.name).toBe('Acrelândia');
     expect(body.data.createdCity.state).toBe('AC');
   });
+
+  test('should not create a city', async () => {
+    const mockCity = {
+      name: 'Acrelândia',
+      state: 'AA'
+    };
+
+    const response = await request(app).post('/api/v1/cities').send(mockCity);
+
+    expect(response.status).toBe(400);
+  });
 });
