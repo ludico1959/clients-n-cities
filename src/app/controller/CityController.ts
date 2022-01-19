@@ -14,12 +14,7 @@ class CityController {
     try {
       const result = await createCityService.execute(req.body);
 
-      return res.status(201).json({
-        status: 'success',
-        data: {
-          createdCity: result
-        }
-      });
+      return res.status(201).json(result);
     } catch (error) {
       return res.status(400).json(error);
     }
@@ -29,12 +24,7 @@ class CityController {
     try {
       const result = await listCitiesByStateService.execute(req.params.state);
 
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          cities: result
-        }
-      });
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(404).json(error);
     }

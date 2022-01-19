@@ -18,12 +18,7 @@ class ClientController {
     try {
       const result = await createClientService.execute(req.body);
 
-      return res.status(201).json({
-        status: 'success',
-        data: {
-          createdClient: result
-        }
-      });
+      return res.status(201).json(result);
     } catch (error) {
       return res.status(400).json(error);
     }
@@ -33,12 +28,7 @@ class ClientController {
     try {
       const result = await findClientByNameService.execute(req.params.name);
 
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          client: result
-        }
-      });
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(404).json(error);
     }
@@ -48,12 +38,7 @@ class ClientController {
     try {
       const result = await findClientByIdService.execute(req.params.id);
 
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          client: result
-        }
-      });
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(404).json(error);
     }
@@ -63,10 +48,7 @@ class ClientController {
     try {
       await deleteClientService.execute(req.params.id);
 
-      return res.status(204).json({
-        status: 'success',
-        data: null
-      });
+      return res.status(204).json(null);
     } catch (error) {
       return res.status(404).json(error);
     }

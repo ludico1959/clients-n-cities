@@ -5,3 +5,4 @@ ormconfig.json
 yarn-error.log
 .vscode
 coverage
+.env
