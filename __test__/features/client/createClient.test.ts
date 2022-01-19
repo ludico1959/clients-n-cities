@@ -39,11 +39,11 @@ describe('src :: api :: controllers :: client :: create', () => {
     const { body } = response;
 
     expect(response.status).toBe(201);
-    expect(body.data.createdClient.id).toBeDefined();
-    expect(body.data.createdClient.name).toBe('Pedro Geromel');
-    expect(body.data.createdClient.gender).toBe('M');
-    expect(body.data.createdClient.birthdate).toBe('21/09/1985');
-    expect(body.data.createdClient.age).toBeDefined();
-    expect(body.data.createdClient.cityId).toBe(id);
+    expect(body.id).toBeDefined();
+    expect(body.name).toBe('Pedro Geromel');
+    expect(body.gender).toBe('M');
+    expect(body.birthdate).toBe('21/09/1985');
+    expect(body.age).toBeDefined();
+    expect(body.cityId).toBe(id);
   });
 });

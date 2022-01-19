@@ -58,12 +58,7 @@ class ClientController {
     try {
       const result = await updateClientName.execute(req.params.id, req.body.name);
 
-      return res.status(204).json({
-        status: 'success',
-        data: {
-          updatedClient: result
-        }
-      });
+      return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json(error);
     }

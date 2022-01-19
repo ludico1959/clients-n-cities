@@ -1,47 +1,47 @@
-version: "3.7"
+version: 3.7
 
 services:
   database_pg:
-    image: postgres
-    container_name: database_pg
-    restart: always
+    image: ${IMAGE_PG}
+    container_name: ${CONTAINER_NAME_PG}
+    restart: ${RESTART}
     ports:
-      - 5432:5432
+      - ${PORTS_PG}
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
     volumes:
-      - pgdata:/data/postgres
+      - ${VOLUMES_PG}
     networks:
-      - pg-network
+      - ${NETWORK}
 
   database_pgadmin:
-    image: dpage/pgadmin4
-    container_name: database_pgadmin
+    image: ${IMAGE_PGADMIN}
+    container_name: ${CONTAINER_NAME_PGADMIN}
     environment:
-      PGADMIN_DEFAULT_EMAIL: "postgres@email.com"
-      PGADMIN_DEFAULT_PASSWORD: "postgres"
+      PGADMIN_DEFAULT_EMAIL: 'postgres@email.com'
+      PGADMIN_DEFAULT_PASSWORD: 'postgres'
     ports:
-      - "15432:80"
+      - ${PORTS_PGADMIN}
     depends_on:
-      - database_pg
+      - ${VOLUMES_PGADMIN}
     networks:
-      - pg-network
+      - ${NETWORK}
 
   app:
-    build: .
-    container_name: clients_n_cities
+    build: ${BUILD}
+    container_name: ${CONTAINER_NAME_APP}
     ports:
-      - 3333:3333
+      - ${PORTS_APP}
     volumes:
-      - .:/usr/app
+      - ${VOLUMES}
     networks:
-      - pg-network
+      - ${NETWORK}
 
 volumes:
   pgdata:
-    driver: local
+    driver: ${DRIVER_VOLUMES}
 
 networks:
   pg-network:
-    driver: bridge
+    driver: ${DRIVER_NETWORKS}

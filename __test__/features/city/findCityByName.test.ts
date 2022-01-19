@@ -32,7 +32,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
     const { body } = response;
 
     expect(response.status).toBe(200);
-    expect(body.data.cities.name).toBe(mockCityName);
+    expect(body.name).toBe(mockCityName);
   });
 
   test('should not return city', async () => {

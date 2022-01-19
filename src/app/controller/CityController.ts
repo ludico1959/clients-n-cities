@@ -34,12 +34,7 @@ class CityController {
     try {
       const result = await findCityByNameService.execute(req.params.name);
 
-      return res.status(200).json({
-        status: 'success',
-        data: {
-          cities: result
-        }
-      });
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(404).json(error);
     }

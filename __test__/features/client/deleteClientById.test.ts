@@ -25,7 +25,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     let response = await request(app).post('/api/v1/cities').send(mockCity);
 
-    const { id } = await response.body.data.createdCity;
+    const { id } = await response.body;
 
     const mockClient = {
       name: 'Geromel',
@@ -36,7 +36,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     response = await request(app).post('/api/v1/clients').send(mockClient);
 
-    const mockClientId = await response.body.data.createdClient.id;
+    const mockClientId = await response.body.id;
 
     response = await request(app).delete(`/api/v1/clients/${mockClientId}`).query({ id: mockClientId });
 
@@ -51,7 +51,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
   //   let response = await request(app).post('/api/v1/cities').send(mockCity);
 
-  //   const { id } = await response.body.data.createdCity;
+  //   const { id } = await response.body;
 
   //   const mockClient = {
   //     name: 'Geromel',

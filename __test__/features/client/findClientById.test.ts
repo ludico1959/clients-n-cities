@@ -25,7 +25,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     let response = await request(app).post('/api/v1/cities').send(mockCity);
 
-    const { id } = await response.body.data.createdCity;
+    const { id } = await response.body;
 
     const mockClient = {
       name: 'Geromel',
@@ -36,14 +36,14 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     response = await request(app).post('/api/v1/clients').send(mockClient);
 
-    const mockClientId = await response.body.data.createdClient.id;
+    const mockClientId = await response.body.id;
 
     response = await request(app).get(`/api/v1/clients/${mockClientId}`).query({ id: mockClientId });
 
     const { body } = response;
 
     expect(response.status).toBe(200);
-    expect(body.data.client.id).toBe(mockClientId);
+    expect(body.id).toBe(mockClientId);
   });
 
   test('should not return a client by its ID', async () => {
@@ -54,7 +54,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     let response = await request(app).post('/api/v1/cities').send(mockCity);
 
-    const { id } = await response.body.data.createdCity;
+    const { id } = await response.body;
 
     const mockClient = {
       name: 'Geromel',
