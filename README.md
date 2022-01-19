@@ -5,29 +5,9 @@ This API RESTful includes the four basic CRUD operations and it is about a relat
 ## 💾 Resources
 
 - Node.JS v14.17.6;
-- MongoDB v.4.4.9;
 - Docker v20.10.11;
 - Docker-compose v1.29.2;
 - PosgresSQL v14.1;
-- Docker images:
-    - postgres Oficial Image,
-    - dpage/pgadmin4;
-- Node Third Party Modules:
-  - Express.Js v.4.17.2,
-  - TypeORM v0.2.41,
-  - node-postgres v8.7.1,
-  - Joi v17.5.0,
-  - Moment v2.29.1,
-  - SuperTest v6.2.1,
-  - reflect-data v0.1.13,
-  - Swagger UI Express v4.3.0,
-  - Jest v27.4.7 (devDependencie),
-  - ESLint v7.32.0 (devDependencie),
-  - Prettier v2.5.0 (devDependencie),
-  - Typescript v4.5.4 (devDependencie),
-  - cross-env v7.0.3 (devDependencie),
-  - ts-node-dev v1.1.8 (devDependencie);
-- JSON data (for sending and returning data);
 - Postman v8.12.5 (for testing endpoits).
 
 
