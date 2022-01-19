@@ -10,7 +10,6 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_MULTIPLE_DATABASES=db,testdb
     volumes:
       - ${VOLUMES_PG}
     networks:
@@ -38,8 +37,6 @@ services:
       - ${VOLUMES_APP}
     networks:
       - ${NETWORK}
-    environment:
-      - CONNECTION_NAME=default
 
 volumes:
   pgdata:

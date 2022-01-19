@@ -7,8 +7,13 @@ class FindClientByNameService {
     this.clientRepository = clientRepository;
   }
 
-  async execute(name: string): Promise<Client | Error> {
-    const result = await this.clientRepository.findByName(name);
+  async execute(name: string) {
+    const filter = {
+      where: name,
+      relations: ['city']
+    };
+
+    const result = await this.clientRepository.findByName(filter);
 
     if (!result) throw new ClientNameNotFound(name);
 

@@ -1,4 +1,4 @@
-export class ClientIdNotFound extends Error {
+export class NotFound extends Error {
   description: string;
 
   message: string;

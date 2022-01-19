@@ -1,6 +1,6 @@
 import { IClientRepository } from '../repository/IClientRepository';
 import { Client } from '../entities/Client';
-import { ClientIdNotFound } from '../errors/client/ClientIdNotfound';
+import { NotFound } from '../errors/NotFound';
 
 class FindClientByIdService {
   constructor(private clientRepository: IClientRepository) {
@@ -10,7 +10,7 @@ class FindClientByIdService {
   async execute(id: string): Promise<Client | Error> {
     const result = await this.clientRepository.findById(id);
 
-    if (!result) throw new ClientIdNotFound(id);
+    if (!result) throw new NotFound(id);
 
     return result;
   }
