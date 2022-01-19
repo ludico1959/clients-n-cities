@@ -1,4 +1,4 @@
-version: 3.7
+version: '3.7'
 
 services:
   database_pg:
@@ -10,6 +10,7 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
+      - POSTGRES_MULTIPLE_DATABASES=db,testdb
     volumes:
       - ${VOLUMES_PG}
     networks:
@@ -24,7 +25,7 @@ services:
     ports:
       - ${PORTS_PGADMIN}
     depends_on:
-      - ${VOLUMES_PGADMIN}
+      - ${DEPENDS_ON}
     networks:
       - ${NETWORK}
 
@@ -34,9 +35,11 @@ services:
     ports:
       - ${PORTS_APP}
     volumes:
-      - ${VOLUMES}
+      - ${VOLUMES_APP}
     networks:
       - ${NETWORK}
+    environment:
+      - CONNECTION_NAME=default
 
 volumes:
   pgdata:
