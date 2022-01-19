@@ -57,7 +57,7 @@ Now your containers are running! You can see them on your Docker Desktop window.
 ```
 It will show a list of your containers running. For now, just select the CONTAINER ID from the one with the postgres image, its name is **database_pg** and type the command below, changing the placeholder %ID% with the CONTAINER ID you just copied:
 ```
-    winpty docker exec it %ID% bash
+    docker exec it %ID% bash
 ```
 It will execute your database container. There, just type the command below:
 ```
