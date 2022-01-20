@@ -2,18 +2,18 @@ import { IClientRepository } from '../repository/IClientRepository';
 import { Client } from '../entities/Client';
 import { ClientNameNotFound } from '../errors/client/ClientNameNotfound';
 
-class FindClientByNameService {
+class FindClientService {
   constructor(private clientRepository: IClientRepository) {
     this.clientRepository = clientRepository;
   }
 
-  async execute(name: string) {
-    const result = await this.clientRepository.findByName(name);
+  async execute(payload: string): Promise<Client[] | Error> {
+    const result = await this.clientRepository.find(payload);
 
-    if (!result) throw new ClientNameNotFound(name);
+    if (!result) throw new ClientNameNotFound(payload);
 
     return result;
   }
 }
 
-export { FindClientByNameService };
+export { FindClientService };

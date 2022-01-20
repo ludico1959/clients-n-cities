@@ -25,6 +25,10 @@ export class CreateClients1641869641420 implements MigrationInterface {
             type: 'varchar'
           },
           {
+            name: 'age',
+            type: 'integer'
+          },
+          {
             name: 'cityId',
             type: 'uuid'
           }
