@@ -12,6 +12,14 @@ class CityRepository implements ICityRepository {
     return city;
   }
 
+  async findOne({ name, state }: ICreateCityDTO): Promise<City> {
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(City);
+
+    const city = await repo.findOne({ name, state });
+
+    return city;
+  }
+
   async find(payload: IFindCityDTO): Promise<Record<string, unknown>> {
     const limit = payload.limit ? payload.limit : 4;
     const page = payload.page ? payload.page : 1;

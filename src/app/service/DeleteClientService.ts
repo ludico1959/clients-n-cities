@@ -1,5 +1,6 @@
 import { IClientRepository } from '../repository/IClientRepository';
 import { Client } from '../entities/Client';
+import { NotFound } from '../errors';
 
 class DeleteClientService {
   constructor(private clientRepository: IClientRepository) {
@@ -7,7 +8,9 @@ class DeleteClientService {
   }
 
   async execute(id: string): Promise<Client | Error> {
-    await this.clientRepository.deleteById(id);
+    const result = await this.clientRepository.deleteById(id);
+
+    if (!result) throw new NotFound('Client not found');
 
     return null;
   }

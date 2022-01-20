@@ -1,6 +1,7 @@
 import { Client } from '../entities/Client';
 import { GetAge } from '../middleware/calculateAge';
 import { IClientRepository } from '../repository/IClientRepository';
+import { AlreadyExists } from '../errors';
 
 const getAge = new GetAge();
 
@@ -18,7 +19,11 @@ class CreateClientService {
     this.clientRepository = clientRepository;
   }
 
-  async execute({ name, gender, birthdate, cityId }: IRequest): Promise<Client | Error> {
+  async execute({ name, gender, birthdate, cityId }: IRequest): Promise<Client> {
+    const checkIfClientAlreadyExists = await this.clientRepository.findOne(name);
+
+    if (!checkIfClientAlreadyExists) throw new AlreadyExists('Clients already exist');
+
     const age = getAge.calculateAge(birthdate);
 
     const result = await this.clientRepository.create({ name, gender, birthdate, age, cityId });

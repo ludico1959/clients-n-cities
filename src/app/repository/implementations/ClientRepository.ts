@@ -12,6 +12,14 @@ class ClientRepository implements IClientRepository {
     return client;
   }
 
+  async findOne(name: string): Promise<Client> {
+    const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
+
+    const client = await repo.findOne({ name });
+
+    return client;
+  }
+
   async find(payload: IFindClientDTO): Promise<Record<string, unknown>> {
     const limit = payload.limit ? payload.limit : 4;
     const page = payload.page ? payload.page : 1;
@@ -32,7 +40,7 @@ class ClientRepository implements IClientRepository {
       skip
     });
 
-    return { result: list, totalCities: count, limit, offset: page, offsets: Math.ceil(count / limit) };
+    return { result: list, totalClients: count, limit, offset: page, offsets: Math.ceil(count / limit) };
   }
 
   async deleteById(id: string): Promise<null> {

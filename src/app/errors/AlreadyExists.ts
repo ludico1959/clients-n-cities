@@ -1,4 +1,4 @@
-export default class AlreadyEcists extends Error {
+export default class AlreadyExists extends Error {
   description: string;
 
   constructor(bodyMessage: string) {

@@ -14,6 +14,7 @@ interface IFindCityDTO {
 
 interface ICityRepository {
   create({ name, state }: ICreateCityDTO): Promise<City>;
+  findOne({ name, state }: ICreateCityDTO): Promise<City>;
   find({ page, limit, name, state }: IFindCityDTO): Promise<Record<string, unknown>>;
 }
 

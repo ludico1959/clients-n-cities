@@ -1,5 +1,6 @@
 import { City } from '../entities/City';
 import { ICityRepository } from '../repository/ICityRepository';
+import { AlreadyExists } from '../errors';
 
 interface IRequest {
   name: string;
@@ -11,8 +12,12 @@ class CreateCityService {
     this.cityRepository = cityRepository;
   }
 
-  async execute({ name, state }: IRequest): Promise<City> {
-    const result = this.cityRepository.create({ name, state });
+  async execute(payload: IRequest): Promise<City> {
+    const checkIfCityAlreadyExists = await this.cityRepository.findOne(payload);
+
+    if (!checkIfCityAlreadyExists) throw new AlreadyExists('Cities already exist');
+
+    const result = await this.cityRepository.create(payload);
 
     return result;
   }
