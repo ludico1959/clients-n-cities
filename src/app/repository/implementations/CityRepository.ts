@@ -12,7 +12,7 @@ class CityRepository implements ICityRepository {
     return city;
   }
 
-  async listByState({ page = 1, limit = 2, state }: IListCityByStateDTO): Promise<{}> {
+  async listByState({ page = 1, limit = 2, state }: IListCityByStateDTO): Promise<Record<string, unknown>> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(City);
 
     const [list, count] = await repo.findAndCount({

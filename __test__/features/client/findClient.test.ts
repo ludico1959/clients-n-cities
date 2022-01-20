@@ -38,12 +38,12 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     await request(app).post('/api/v1/clients').send(mockClient);
 
-    response = await request(app).get(`/api/v1/clients/name/${mockClientName}`).query({ name: mockClientName });
+    response = await request(app).get(`/api/v1/clients`).query({ name: mockClientName });
 
     const { body } = response;
 
     expect(response.status).toBe(200);
-    expect(body.name).toBe(mockClientName);
+    expect(body[0].name).toBe(mockClientName);
   });
 
   test('should not return a client by its name', async () => {
@@ -67,7 +67,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     await request(app).post('/api/v1/clients').send(mockClient);
 
-    response = await request(app).get(`/api/v1/clients/name/${mockClientName}`).query({ name: mockClientName });
+    response = await request(app).get(`/api/v1/clients`).query({ name: mockClientName });
 
     expect(response.status).toBe(404);
   });

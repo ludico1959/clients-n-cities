@@ -3,9 +3,9 @@ export class NotFound extends Error {
 
   message: string;
 
-  constructor(id: string) {
+  constructor() {
     super();
     this.description = 'Not found';
-    this.message = `The client ID: ${id} was not found`;
+    this.message = `The client was not found`;
   }
 }

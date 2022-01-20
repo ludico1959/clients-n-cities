@@ -5,7 +5,7 @@ class ListCitiesByStateService {
     this.cityRepository = cityRepository;
   }
 
-  async execute(state: string): Promise<{}> {
+  async execute(state: string): Promise<Record<string, unknown>> {
     const result = await this.cityRepository.listByState({ state });
 
     return result;

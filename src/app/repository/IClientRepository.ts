@@ -10,7 +10,7 @@ interface ICreateClientDTO {
 
 interface IClientRepository {
   create({ name, gender, birthdate, age, cityId }: ICreateClientDTO): Promise<Client>;
-  find(payload: string): Promise<Client[]>;
+  find(payload: Record<string, unknown>): Promise<Client[]>;
   deleteById(id: string): Promise<null>;
   updateName(id: string, name: string): Promise<Client>;
 }
