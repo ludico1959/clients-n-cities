@@ -9,7 +9,7 @@ class FindCityService {
   async execute(payload: IFindCityDTO): Promise<Record<string, unknown>> {
     const result = await this.cityRepository.find(payload);
 
-    if (!result) throw new NotFound('Cities not found');
+    if (result.totalCities === 0) throw new NotFound('City not found');
 
     return result;
   }

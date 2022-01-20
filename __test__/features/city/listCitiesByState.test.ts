@@ -33,16 +33,16 @@ describe('src :: api :: controllers :: city :: listByState', () => {
     await request(app).post('/api/v1/cities').send(mockCity01);
     await request(app).post('/api/v1/cities').send(mockCity02);
 
-    const response = await request(app).get(`/api/v1/cities/state/${mockState}`).query({ state: mockState });
+    const response = await request(app).get('/api/v1/cities/').query({ state: mockState });
 
     const { body } = response;
 
     expect(response.status).toBe(200);
-    body.cities.forEach((city: { state: any }) => expect(city.state).toBe(mockState));
+    body.result.forEach((city: { state: string }) => expect(city.state).toBe(mockState));
   });
 
   test('should not return a list of cities from a state', async () => {
-    const mockState = '';
+    const mockState = 'RS';
 
     const mockCity01 = {
       name: 'Cuiabá',

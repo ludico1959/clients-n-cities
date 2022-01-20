@@ -12,10 +12,12 @@ class ClientRepository implements IClientRepository {
     return client;
   }
 
-  async findOne(name: string): Promise<Client> {
+  async findOne(payload: string): Promise<Client> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
 
-    const client = await repo.findOne({ name });
+    const client = await repo.findOne({
+      where: [{ id: payload }, { name: payload }]
+    });
 
     return client;
   }

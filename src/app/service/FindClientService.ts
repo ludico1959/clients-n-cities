@@ -9,7 +9,7 @@ class FindClientService {
   async execute(payload: IFindClientDTO): Promise<Record<string, unknown>> {
     const result = await this.clientRepository.find(payload);
 
-    if (!result) throw new NotFound('Client not found');
+    if (result.totalClients === 0) throw new NotFound('Client not found');
 
     return result;
   }

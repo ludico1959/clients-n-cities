@@ -15,7 +15,7 @@ class CreateCityService {
   async execute(payload: IRequest): Promise<City> {
     const checkIfCityAlreadyExists = await this.cityRepository.findOne(payload);
 
-    if (!checkIfCityAlreadyExists) throw new AlreadyExists('Cities already exist');
+    if (checkIfCityAlreadyExists) throw new AlreadyExists('City already exist');
 
     const result = await this.cityRepository.create(payload);
 

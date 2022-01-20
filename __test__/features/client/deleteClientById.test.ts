@@ -43,29 +43,29 @@ describe('src :: api :: controllers :: city :: listByName', () => {
     expect(response.status).toBe(204);
   });
 
-  // test('should not delete a client by its ID', async () => {
-  //   const mockCity = {
-  //     name: 'São Paulo',
-  //     state: 'SP'
-  //   };
+  test('should not delete a client by its ID', async () => {
+    const mockCity = {
+      name: 'São Paulo',
+      state: 'SP'
+    };
 
-  //   let response = await request(app).post('/api/v1/cities').send(mockCity);
+    let response = await request(app).post('/api/v1/cities').send(mockCity);
 
-  //   const { id } = await response.body;
+    const { id } = await response.body;
 
-  //   const mockClient = {
-  //     name: 'Geromel',
-  //     gender: 'M',
-  //     birthdate: '21/09/1985',
-  //     cityId: id
-  //   };
+    const mockClient = {
+      name: 'Geromel',
+      gender: 'M',
+      birthdate: '21/09/1985',
+      cityId: id
+    };
 
-  //   response = await request(app).post('/api/v1/clients').send(mockClient);
+    response = await request(app).post('/api/v1/clients').send(mockClient);
 
-  //   const mockClientId = '';
+    const mockClientId = '152c7d29-61c5-4c0c-a149-65229071eb78';
 
-  //   response = await request(app).get(`/api/v1/clients/${mockClientId}`).query({ id: mockClientId });
+    response = await request(app).get(`/api/v1/clients/${mockClientId}`).query({ id: mockClientId });
 
-  //   expect(response.status).toBe(404);
-  // });
+    expect(response.status).toBe(404);
+  });
 });

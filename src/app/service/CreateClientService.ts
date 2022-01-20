@@ -22,7 +22,7 @@ class CreateClientService {
   async execute({ name, gender, birthdate, cityId }: IRequest): Promise<Client> {
     const checkIfClientAlreadyExists = await this.clientRepository.findOne(name);
 
-    if (!checkIfClientAlreadyExists) throw new AlreadyExists('Clients already exist');
+    if (checkIfClientAlreadyExists) throw new AlreadyExists('Clients already exist');
 
     const age = getAge.calculateAge(birthdate);
 
