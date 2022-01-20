@@ -1,6 +1,6 @@
 import { IClientRepository } from '../repository/IClientRepository';
 import { Client } from '../entities/Client';
-import { NotFound } from '../errors/NotFound';
+import { NotFound } from '../errors';
 
 class FindClientService {
   constructor(private clientRepository: IClientRepository) {

@@ -38,7 +38,7 @@ describe('src :: api :: controllers :: city :: listByState', () => {
     const { body } = response;
 
     expect(response.status).toBe(200);
-    body.list.forEach((city: { state: any }) => expect(city.state).toBe(mockState));
+    body.cities.forEach((city: { state: any }) => expect(city.state).toBe(mockState));
   });
 
   test('should not return a list of cities from a state', async () => {

@@ -25,7 +25,7 @@ class CityRepository implements ICityRepository {
       take: limit
     });
 
-    return { list, totalCities: count, limit, offset: page, offsets: Math.ceil(count / limit) };
+    return { cities: list, totalCities: count, limit, offset: page, offsets: Math.ceil(count / limit) };
   }
 
   async findByName(name: string): Promise<City> {

@@ -1,4 +1,4 @@
-export class NotFound extends Error {
+export default class NotFound extends Error {
   description: string;
 
   constructor(item: string) {
