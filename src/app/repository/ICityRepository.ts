@@ -13,7 +13,7 @@ interface IListCityByStateDTO {
 
 interface ICityRepository {
   create({ name, state }: ICreateCityDTO): Promise<City>;
-  listByState({ page, limit, state }: IListCityByStateDTO): Promise<{}>;
+  listByState({ page, limit, state }: IListCityByStateDTO): Promise<Record<string, unknown>>;
   findByName(name: string): Promise<City>;
 }
 

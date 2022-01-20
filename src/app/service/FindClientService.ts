@@ -1,5 +1,6 @@
 import { IClientRepository } from '../repository/IClientRepository';
 import { Client } from '../entities/Client';
+import { NotFound } from '../errors/NotFound';
 
 class FindClientService {
   constructor(private clientRepository: IClientRepository) {
@@ -8,6 +9,8 @@ class FindClientService {
 
   async execute(payload: Record<string, unknown>): Promise<Client[] | Error> {
     const result = await this.clientRepository.find(payload);
+
+    if (!result.length) throw new NotFound('Client not found');
 
     return result;
   }
