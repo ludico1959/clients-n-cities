@@ -1,5 +1,4 @@
-import { IClientRepository } from '../repository/IClientRepository';
-import { Client } from '../entities/Client';
+import { IClientRepository, IFindClientDTO } from '../repository/IClientRepository';
 import { NotFound } from '../errors';
 
 class FindClientService {
@@ -7,10 +6,10 @@ class FindClientService {
     this.clientRepository = clientRepository;
   }
 
-  async execute(payload: Record<string, unknown>): Promise<Client[] | Error> {
+  async execute(payload: IFindClientDTO): Promise<Record<string, unknown>> {
     const result = await this.clientRepository.find(payload);
 
-    if (!result.length) throw new NotFound('Client not found');
+    if (!result) throw new NotFound('Client not found');
 
     return result;
   }

@@ -1,9 +1,9 @@
-export default class NotFound extends Error {
+export default class AlreadyEcists extends Error {
   description: string;
 
   constructor(bodyMessage: string) {
     super();
-    this.description = 'Not found';
+    this.description = 'Bad request';
     this.message = bodyMessage;
   }
 }

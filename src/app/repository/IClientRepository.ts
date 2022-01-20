@@ -8,11 +8,18 @@ interface ICreateClientDTO {
   cityId: string;
 }
 
+interface IFindClientDTO {
+  page?: number;
+  limit?: number;
+  name?: string;
+  id?: string;
+}
+
 interface IClientRepository {
   create({ name, gender, birthdate, age, cityId }: ICreateClientDTO): Promise<Client>;
-  find(payload: Record<string, unknown>): Promise<Client[]>;
+  find(payload: IFindClientDTO): Promise<Record<string, unknown>>;
   deleteById(id: string): Promise<null>;
   updateName(id: string, name: string): Promise<Client>;
 }
 
-export { IClientRepository, ICreateClientDTO };
+export { IClientRepository, ICreateClientDTO, IFindClientDTO };

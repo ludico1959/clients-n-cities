@@ -5,16 +5,16 @@ interface ICreateCityDTO {
   state: string;
 }
 
-interface IListCityByStateDTO {
+interface IFindCityDTO {
   page?: number;
   limit?: number;
-  state: string;
+  name?: string;
+  state?: string;
 }
 
 interface ICityRepository {
   create({ name, state }: ICreateCityDTO): Promise<City>;
-  listByState({ page, limit, state }: IListCityByStateDTO): Promise<Record<string, unknown>>;
-  findByName(name: string): Promise<City>;
+  find({ page, limit, name, state }: IFindCityDTO): Promise<Record<string, unknown>>;
 }
 
-export { ICityRepository, ICreateCityDTO, IListCityByStateDTO };
+export { ICityRepository, ICreateCityDTO, IFindCityDTO };
