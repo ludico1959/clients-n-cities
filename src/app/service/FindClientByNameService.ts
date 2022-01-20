@@ -8,12 +8,7 @@ class FindClientByNameService {
   }
 
   async execute(name: string) {
-    const filter = {
-      where: name,
-      relations: ['city']
-    };
-
-    const result = await this.clientRepository.findByName(filter);
+    const result = await this.clientRepository.findByName(name);
 
     if (!result) throw new ClientNameNotFound(name);
 
