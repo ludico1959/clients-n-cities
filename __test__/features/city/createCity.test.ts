@@ -33,7 +33,7 @@ describe('src :: api :: controllers :: city :: create', () => {
     expect(body.state).toBe('AC');
   });
 
-  test('should not create a city', async () => {
+  test('should return status code equal to 400', async () => {
     const mockCity01 = {
       name: 'Rio Branco',
       state: 'AC'
@@ -47,6 +47,18 @@ describe('src :: api :: controllers :: city :: create', () => {
     };
 
     const response = await request(app).post('/api/v1/cities').send(mockCity02);
+
+    expect(response.status).toBe(400);
+  });
+  test('should return status code equal to 400', async () => {
+    const mockCity = {
+      name: 'Goiânia',
+      state: 'GG'
+    };
+
+    await request(app).post('/api/v1/cities').send(mockCity);
+
+    const response = await request(app).post('/api/v1/cities').send(mockCity);
 
     expect(response.status).toBe(400);
   });

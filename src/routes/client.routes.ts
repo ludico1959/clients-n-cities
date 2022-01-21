@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { ClientController } from '../app/controller/ClientController';
-import updateClientValidation from '../app/validations/client/updateClient';
-import createClientValidation from '../app/validations/client/createClient';
+import updateClientValidation from '../app/validations/client/updateClientValidation';
+import createClientValidation from '../app/validations/client/createClientValidation';
 
 const clientRouter = Router();
 

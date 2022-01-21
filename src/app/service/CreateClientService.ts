@@ -1,5 +1,5 @@
 import { Client } from '../entities/Client';
-import { GetAge } from '../middleware/calculateAge';
+import { GetAge } from '../utils/calculateAge';
 import { IClientRepository } from '../repository/IClientRepository';
 import { AlreadyExists } from '../errors';
 

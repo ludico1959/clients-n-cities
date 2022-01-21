@@ -16,8 +16,8 @@ afterAll(async () => {
   }
 });
 
-describe('src :: api :: controllers :: city :: listByState', () => {
-  test('should return a list of cities from a state and must have a pagination', async () => {
+describe('src :: api :: controllers :: city :: find', () => {
+  test('should return a list of cities from some state', async () => {
     const mockState = 'MT';
 
     const mockCity01 = {
@@ -41,7 +41,7 @@ describe('src :: api :: controllers :: city :: listByState', () => {
     body.result.forEach((city: { state: string }) => expect(city.state).toBe(mockState));
   });
 
-  test('should not return a list of cities from a state', async () => {
+  test('should return status code equal to 404', async () => {
     const mockState = 'RS';
 
     const mockCity01 = {
@@ -57,7 +57,23 @@ describe('src :: api :: controllers :: city :: listByState', () => {
     await request(app).post('/api/v1/cities').send(mockCity01);
     await request(app).post('/api/v1/cities').send(mockCity02);
 
-    const response = await request(app).get(`/api/v1/cities/state/${mockState}`).query({ state: mockState });
+    const response = await request(app).get(`/api/v1/cities`).query({ state: mockState });
+
+    expect(response.status).toBe(404);
+  });
+
+  test('should return status code equal to 404', async () => {
+    jest.useFakeTimers('legacy');
+    const mockCityName = 'Sinop';
+
+    const mockCity = {
+      name: 'Cuiabá',
+      state: 'MT'
+    };
+
+    await request(app).post('/api/v1/cities').send(mockCity);
+
+    const response = await request(app).get(`/api/v1/cities`).query({ name: mockCityName });
 
     expect(response.status).toBe(404);
   });

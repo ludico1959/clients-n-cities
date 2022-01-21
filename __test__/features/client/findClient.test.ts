@@ -16,7 +16,7 @@ afterAll(async () => {
   }
 });
 
-describe('src :: api :: controllers :: city :: listByName', () => {
+describe('src :: api :: controllers :: city :: find', () => {
   test('should return a client by its name', async () => {
     const mockCity = {
       name: 'São Paulo',
