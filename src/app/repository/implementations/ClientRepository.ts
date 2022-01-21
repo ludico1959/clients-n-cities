@@ -3,9 +3,9 @@ import { Client } from '../../entities/Client';
 import { IClientRepository, ICreateClientDTO, IFindClientDTO } from '../IClientRepository';
 
 class ClientRepository implements IClientRepository {
-  async create({ name, gender, birthdate, age, cityId }: ICreateClientDTO): Promise<Client> {
+  async create({ name, gender, birthdate, cityId }: ICreateClientDTO): Promise<Client> {
     const repo = getConnection(process.env.CONNECTION_NAME).getRepository(Client);
-    const client = repo.create({ name, gender, birthdate, age, cityId });
+    const client = repo.create({ name, gender, birthdate, cityId });
 
     await repo.save(client);
 

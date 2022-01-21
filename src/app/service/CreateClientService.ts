@@ -24,9 +24,9 @@ class CreateClientService {
 
     if (checkIfClientAlreadyExists) throw new AlreadyExists('Clients already exist');
 
-    const age = getAge.calculateAge(birthdate);
+    const result = await this.clientRepository.create({ name, gender, birthdate, cityId });
 
-    const result = await this.clientRepository.create({ name, gender, birthdate, age, cityId });
+    result.age = getAge.calculateAge(birthdate);
 
     return result;
   }

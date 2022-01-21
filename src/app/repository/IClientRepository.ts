@@ -4,7 +4,6 @@ interface ICreateClientDTO {
   name: string;
   gender: string;
   birthdate: string;
-  age: number;
   cityId: string;
 }
 
@@ -16,7 +15,7 @@ interface IFindClientDTO {
 }
 
 interface IClientRepository {
-  create({ name, gender, birthdate, age, cityId }: ICreateClientDTO): Promise<Client>;
+  create({ name, gender, birthdate, cityId }: ICreateClientDTO): Promise<Client>;
   findOne(payload: any): Promise<Client>;
   find(payload: IFindClientDTO): Promise<Record<string, unknown>>;
   deleteById(id: string): Promise<null>;
