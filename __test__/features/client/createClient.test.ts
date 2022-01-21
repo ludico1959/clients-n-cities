@@ -47,9 +47,9 @@ describe('src :: api :: controllers :: client :: create', () => {
     expect(body.cityId).toBe(id);
   });
 
-  test('should return a status code equal to 400', async () => {
+  test('should not create a client', async () => {
     const mockCity = {
-      name: 'São Carlos',
+      name: 'São Paulo',
       state: 'SP'
     };
 
@@ -64,32 +64,15 @@ describe('src :: api :: controllers :: client :: create', () => {
       cityId: id
     };
 
-    const mockClient02 = mockClient01;
-
-    await request(app).post('/api/v1/clients').send(mockClient01);
-    response = await request(app).post('/api/v1/clients').send(mockClient02);
-
-    expect(response.status).toBe(400);
-  });
-
-  test('should return a status code equal to 400', async () => {
-    const mockCity = {
-      name: 'Rio de Janeiro',
-      state: 'RJ'
-    };
-
-    let response = await request(app).post('/api/v1/cities').send(mockCity);
-
-    const { id } = await response.body;
-
-    const mockClient = {
-      name: 'Bruno Cortês',
+    const mockClient02 = {
+      name: 'Pedro Geromel',
       gender: 'M',
-      birthdate: '01-09-1985',
+      birthdate: '21/09/1985',
       cityId: id
     };
 
-    response = await request(app).post('/api/v1/clients').send(mockClient);
+    await request(app).post('/api/v1/clients').send(mockClient01);
+    response = await request(app).post('/api/v1/clients').send(mockClient02);
 
     expect(response.status).toBe(400);
   });

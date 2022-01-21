@@ -16,10 +16,10 @@ afterAll(async () => {
   }
 });
 
-describe('src :: api :: controllers :: client :: update', () => {
+describe('src :: api :: controllers :: client :: create', () => {
   test('should update a client', async () => {
     const mockCity = {
-      name: 'Campinas',
+      name: 'São Paulo',
       state: 'SP'
     };
 
@@ -28,7 +28,7 @@ describe('src :: api :: controllers :: client :: update', () => {
     const { id } = await response.body;
 
     const mockClient = {
-      name: 'Paulo Miranda',
+      name: 'Pedro Geromel',
       gender: 'M',
       birthdate: '21/09/1985',
       cityId: id
