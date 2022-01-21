@@ -16,11 +16,11 @@ afterAll(async () => {
   }
 });
 
-describe('src :: api :: controllers :: city :: listByName', () => {
+describe('src :: api :: controllers :: city :: delete', () => {
   test('should delete a client by its ID', async () => {
     const mockCity = {
-      name: 'São Paulo',
-      state: 'SP'
+      name: 'Londrina',
+      state: 'PR'
     };
 
     let response = await request(app).post('/api/v1/cities').send(mockCity);
@@ -28,25 +28,25 @@ describe('src :: api :: controllers :: city :: listByName', () => {
     const { id } = await response.body;
 
     const mockClient = {
-      name: 'Geromel',
+      name: 'Diego Sousa',
       gender: 'M',
       birthdate: '21/09/1985',
       cityId: id
     };
 
-    response = await request(app).post('/api/v1/clients').send(mockClient);
-
     const mockClientId = await response.body.id;
+
+    response = await request(app).post('/api/v1/clients').send(mockClient);
 
     response = await request(app).delete(`/api/v1/clients/${mockClientId}`).query({ id: mockClientId });
 
     expect(response.status).toBe(204);
   });
 
-  test('should not delete a client by its ID', async () => {
+  test('should return status code equal to 400', async () => {
     const mockCity = {
-      name: 'São Paulo',
-      state: 'SP'
+      name: 'Porto Alegre',
+      state: 'RS'
     };
 
     let response = await request(app).post('/api/v1/cities').send(mockCity);
@@ -54,13 +54,13 @@ describe('src :: api :: controllers :: city :: listByName', () => {
     const { id } = await response.body;
 
     const mockClient = {
-      name: 'Geromel',
+      name: 'Douglas Costa',
       gender: 'M',
-      birthdate: '21/09/1985',
+      birthdate: '01/01/1985',
       cityId: id
     };
 
-    response = await request(app).post('/api/v1/clients').send(mockClient);
+    await request(app).post('/api/v1/clients').send(mockClient);
 
     const mockWrongClientId = '152c7d29-61c5-4c0c-a149-65229071eb78';
 
