@@ -19,7 +19,7 @@
     "moment": "2.29.1",
     "pg": "8.7.1",
     "reflect-metadata": "0.1.13",
-    "supertest": "6.2.1",
+    "supertest": "^6.2.2",
     "swagger-ui-express": "^4.3.0",
     "typeorm": "0.2.41"
   },

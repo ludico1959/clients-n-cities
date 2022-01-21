@@ -16,8 +16,8 @@ afterAll(async () => {
   }
 });
 
-describe('src :: api :: controllers :: city :: listByName', () => {
-  test('should delete a client by its ID', async () => {
+describe('src :: api :: controllers :: client :: create', () => {
+  test('should update a client', async () => {
     const mockCity = {
       name: 'São Paulo',
       state: 'SP'
@@ -28,7 +28,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
     const { id } = await response.body;
 
     const mockClient = {
-      name: 'Geromel',
+      name: 'Pedro Geromel',
       gender: 'M',
       birthdate: '21/09/1985',
       cityId: id
@@ -36,14 +36,14 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     response = await request(app).post('/api/v1/clients').send(mockClient);
 
-    const mockClientId = await response.body.id;
+    const mockUpdatedClientName = 'Walter Kannemann';
 
-    response = await request(app).delete(`/api/v1/clients/${mockClientId}`).query({ id: mockClientId });
+    response = await request(app).put(`/api/v1/clients/${response.body.id}`).send({ name: mockUpdatedClientName });
 
     expect(response.status).toBe(204);
   });
 
-  test('should not delete a client by its ID', async () => {
+  test('should not update a client', async () => {
     const mockCity = {
       name: 'São Paulo',
       state: 'SP'
@@ -54,7 +54,7 @@ describe('src :: api :: controllers :: city :: listByName', () => {
     const { id } = await response.body;
 
     const mockClient = {
-      name: 'Geromel',
+      name: 'Pedro Geromel',
       gender: 'M',
       birthdate: '21/09/1985',
       cityId: id
@@ -62,10 +62,11 @@ describe('src :: api :: controllers :: city :: listByName', () => {
 
     response = await request(app).post('/api/v1/clients').send(mockClient);
 
+    const mockUpdatedClientName = 'Walter Kannemann';
     const mockWrongClientId = '152c7d29-61c5-4c0c-a149-65229071eb78';
 
-    response = await request(app).get(`/api/v1/clients/${mockWrongClientId}`).query({ id: mockWrongClientId });
+    response = await request(app).put(`/api/v1/clients/${mockWrongClientId}`).send({ name: mockUpdatedClientName });
 
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(400);
   });
 });

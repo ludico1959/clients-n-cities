@@ -34,12 +34,19 @@ describe('src :: api :: controllers :: city :: create', () => {
   });
 
   test('should not create a city', async () => {
-    const mockCity = {
-      name: 'Acrelândia',
-      state: 'AA'
+    const mockCity01 = {
+      name: 'Rio Branco',
+      state: 'AC'
     };
 
-    const response = await request(app).post('/api/v1/cities').send(mockCity);
+    await request(app).post('/api/v1/cities').send(mockCity01);
+
+    const mockCity02 = {
+      name: 'Rio Branco',
+      state: 'AC'
+    };
+
+    const response = await request(app).post('/api/v1/cities').send(mockCity02);
 
     expect(response.status).toBe(400);
   });

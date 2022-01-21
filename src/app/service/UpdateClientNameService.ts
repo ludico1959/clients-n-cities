@@ -2,18 +2,20 @@ import { IClientRepository } from '../repository/IClientRepository';
 import { Client } from '../entities/Client';
 import { NotFound } from '../errors';
 
-class UpdateClientName {
+class UpdateClientNameService {
   constructor(private clientRepository: IClientRepository) {
     this.clientRepository = clientRepository;
   }
 
   async execute(id: string, name: string): Promise<Client | Error> {
-    const result = await this.clientRepository.updateName(id, name);
+    const checkIfClientAlreadyExists = await this.clientRepository.findOne(id);
 
-    if (!result) throw new NotFound('Client not found');
+    if (!checkIfClientAlreadyExists) throw new NotFound('Client not found');
+
+    const result = await this.clientRepository.updateName(id, name);
 
     return result;
   }
 }
 
-export { UpdateClientName };
+export { UpdateClientNameService };

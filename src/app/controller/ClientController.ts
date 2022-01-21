@@ -3,13 +3,13 @@ import { ClientRepository } from '../repository/implementations/ClientRepository
 import { CreateClientService } from '../service/CreateClientService';
 import { FindClientService } from '../service/FindClientService';
 import { DeleteClientService } from '../service/DeleteClientService';
-import { UpdateClientName } from '../service/UpdateClientNameService';
+import { UpdateClientNameService } from '../service/UpdateClientNameService';
 
 const clientRepository = new ClientRepository();
 const createClientService = new CreateClientService(clientRepository);
 const findClientService = new FindClientService(clientRepository);
 const deleteClientService = new DeleteClientService(clientRepository);
-const updateClientName = new UpdateClientName(clientRepository);
+const updateClientNameService = new UpdateClientNameService(clientRepository);
 
 class ClientController {
   async create(req: Request, res: Response): Promise<Response> {
@@ -44,7 +44,7 @@ class ClientController {
 
   async updateName(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await updateClientName.execute(req.params.id, req.body.name);
+      const result = await updateClientNameService.execute(req.params.id, req.body.name);
 
       return res.status(204).json(result);
     } catch (error) {
