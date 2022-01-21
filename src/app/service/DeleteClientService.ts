@@ -8,7 +8,7 @@ class DeleteClientService {
   }
 
   async execute(id: string): Promise<Client | Error> {
-    const checkIfClientAlreadyExists = await this.clientRepository.findOne(id);
+    const checkIfClientAlreadyExists = await this.clientRepository.findOne({ id });
 
     if (!checkIfClientAlreadyExists) throw new NotFound('Client not found');
 
