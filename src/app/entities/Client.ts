@@ -23,6 +23,8 @@ export class Client {
   @JoinColumn({ name: 'cityId' })
   city!: City;
 
+  age: number;
+
   constructor() {
     if (!this.id) {
       this.id = randomUUID();

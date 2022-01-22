@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
+import { brazilianUF } from '../../utils/enumStates';
 
 export = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -9,35 +10,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
       state: Joi.string()
         .trim()
         .required()
-        .valid(
-          'AC',
-          'AL',
-          'AP',
-          'AM',
-          'BA',
-          'CE',
-          'DF',
-          'ES',
-          'GO',
-          'MA',
-          'MT',
-          'MS',
-          'MG',
-          'PA',
-          'PB',
-          'PR',
-          'PE',
-          'PI',
-          'RJ',
-          'RN',
-          'RS',
-          'RO',
-          'RR',
-          'SC',
-          'SP',
-          'SE',
-          'TO'
-        )
+        .valid(...Object.keys(brazilianUF))
     });
 
     const { error } = entity.validate(req.body, { abortEarly: false });

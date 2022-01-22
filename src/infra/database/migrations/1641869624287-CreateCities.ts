@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { brazilianUF } from '../../../app/utils/enumStates';
 
 export class CreateCities1641869624287 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -18,35 +19,7 @@ export class CreateCities1641869624287 implements MigrationInterface {
           {
             name: 'state',
             type: 'varchar',
-            enum: [
-              'AC',
-              'AL',
-              'AP',
-              'AM',
-              'BA',
-              'CE',
-              'DF',
-              'ES',
-              'GO',
-              'MA',
-              'MT',
-              'MS',
-              'MG',
-              'PA',
-              'PB',
-              'PR',
-              'PE',
-              'PI',
-              'RJ',
-              'RN',
-              'RS',
-              'RO',
-              'RR',
-              'SC',
-              'SP',
-              'SE',
-              'TO'
-            ]
+            enum: Object.keys(brazilianUF)
           }
         ]
       })
