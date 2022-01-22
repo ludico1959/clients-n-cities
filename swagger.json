@@ -14,9 +14,7 @@
   "paths": {
     "/cities": {
       "post": {
-        "tags": [
-          "City"
-        ],
+        "tags": ["City"],
         "summary": "Create city",
         "parameters": [],
         "requestBody": {
@@ -43,9 +41,7 @@
         "deprecated": false
       },
       "get": {
-        "tags": [
-          "City"
-        ],
+        "tags": ["City"],
         "summary": "List city",
         "parameters": [
           {
@@ -85,9 +81,7 @@
     },
     "/clients": {
       "post": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Create client",
         "operationId": "Createclient",
         "parameters": [],
@@ -117,9 +111,7 @@
         "deprecated": false
       },
       "get": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Find client",
         "parameters": [],
         "responses": {
@@ -131,9 +123,7 @@
         "deprecated": false
       },
       "delete": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Delete client",
         "operationId": "Deleteclient",
         "parameters": [],
@@ -146,9 +136,7 @@
         "deprecated": false
       },
       "put": {
-        "tags": [
-          "Client"
-        ],
+        "tags": ["Client"],
         "summary": "Update client's name",
         "parameters": [],
         "requestBody": {
@@ -179,10 +167,7 @@
     "schemas": {
       "CreatecityRequest": {
         "title": "CreatecityRequest",
-        "required": [
-          "name",
-          "state"
-        ],
+        "required": ["name", "state"],
         "type": "object",
         "properties": {
           "name": {
@@ -199,12 +184,7 @@
       },
       "CreateclientRequest": {
         "title": "CreateclientRequest",
-        "required": [
-          "name",
-          "gender",
-          "birthdate",
-          "cityId"
-        ],
+        "required": ["name", "gender", "birthdate", "cityId"],
         "type": "object",
         "properties": {
           "name": {
@@ -229,9 +209,7 @@
       },
       "UpdateclientsnameRequest": {
         "title": "UpdateclientsnameRequest",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "properties": {
           "name": {
