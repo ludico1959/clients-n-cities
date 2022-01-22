@@ -48,4 +48,12 @@ describe('src :: api :: controllers :: city :: delete', () => {
 
     expect(response.status).toBe(404);
   });
+
+  test('should return status code equal to 400', async () => {
+    const mockWrongClientId = '123456';
+
+    const response = await request(app).delete(`/api/v1/clients/${mockWrongClientId}`);
+
+    expect(response.status).toBe(400);
+  });
 });

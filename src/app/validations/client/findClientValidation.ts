@@ -7,7 +7,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
       cityId: Joi.string().uuid(),
       name: Joi.string().trim(),
       gender: Joi.string().trim(),
-      birthdate: Joi.string().trim
+      birthdate: Joi.string().trim()
     });
 
     const { error } = entity.validate(req.query, { abortEarly: false });

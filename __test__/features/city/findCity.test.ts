@@ -62,9 +62,8 @@ describe('src :: api :: controllers :: city :: find', () => {
     expect(response.status).toBe(404);
   });
 
-  test('should return status code equal to 404', async () => {
-    jest.useFakeTimers('legacy');
-    const mockCityName = 'Sinop';
+  test('should return status code equal to 400', async () => {
+    const mockCityState = 'AA';
 
     const mockCity = {
       name: 'Cuiabá',
@@ -73,8 +72,8 @@ describe('src :: api :: controllers :: city :: find', () => {
 
     await request(app).post('/api/v1/cities').send(mockCity);
 
-    const response = await request(app).get(`/api/v1/cities`).query({ name: mockCityName });
+    const response = await request(app).get(`/api/v1/cities`).query({ state: mockCityState });
 
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(400);
   });
 });
