@@ -1,0 +1,255 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Clients 'N' Cities",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/api/v1",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/cities": {
+      "post": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Create city",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatecityRequest"
+              },
+              "example": {
+                "name": "Rio Grande",
+                "state": "RS"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "City"
+        ],
+        "summary": "List city",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "Rio Grande"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 6
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/clients": {
+      "post": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Create client",
+        "operationId": "Createclient",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateclientRequest"
+              },
+              "example": {
+                "name": "Pedro Geromel",
+                "gender": "M",
+                "birthdate": "21/09/1985",
+                "cityId": "b1679737-66f7-4f95-8bcd-3a0e50836aed"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Find client",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Delete client",
+        "operationId": "Deleteclient",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Update client's name",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateclientsnameRequest"
+              },
+              "example": {
+                "name": "Walter Kannemann"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreatecityRequest": {
+        "title": "CreatecityRequest",
+        "required": [
+          "name",
+          "state"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Rio Grande",
+          "state": "RS"
+        }
+      },
+      "CreateclientRequest": {
+        "title": "CreateclientRequest",
+        "required": [
+          "name",
+          "gender",
+          "birthdate",
+          "cityId"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "birthdate": {
+            "type": "string"
+          },
+          "cityId": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Pedro Geromel",
+          "gender": "M",
+          "birthdate": "21/09/1985",
+          "cityId": "b1679737-66f7-4f95-8bcd-3a0e50836aed"
+        }
+      },
+      "UpdateclientsnameRequest": {
+        "title": "UpdateclientsnameRequest",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Walter Kannemann"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "City"
+    },
+    {
+      "name": "Client"
+    }
+  ]
+}
