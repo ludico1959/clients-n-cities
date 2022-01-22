@@ -50,6 +50,8 @@ Also, it's required that you also rename the file called config.example.env to *
 ### 5️⃣ Creating and running the Docker containers 
 
 Before finally running the app, you need to create the docker container to run our Postgres database. For that, we will use the **docker-compose.yml** file on the root of the project. First thing is to open your Docker Desktop and type this command on the command-line interpreter: 
+
+*Note: There is also a Dockerfile in the root of the project, but just ignore it for this moment. It's goal is to create a image from this API, just like the other services in the docker-compose file: postgres and pgadmin. By the way, inside of this file you can see the app service commented! But, as I said, you don't need to worry about that.*   
 ```
     docker-compose up
 ```
@@ -59,7 +61,7 @@ Now your containers are running! You can see them on your Docker Desktop window.
 ```
 It will show a list of your containers running. For now, just select the CONTAINER ID from the one with the postgres image, its name is **database_pg** and type the command below, changing the placeholder %ID% with the CONTAINER ID you just copied:
 ```
-    docker exec it %ID% bash
+    docker exec -it %ID% bash
 ```
 It will execute your database container. There, just type the command below:
 ```
