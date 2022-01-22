@@ -40,10 +40,12 @@ npm install
 
 By typing the statement above, it will automatically download all the dependencies listed in the package.json file inside the folder **node_modules**:
 
-### 4️⃣ Setting ormconfig variables
+### 4️⃣ Setting environment variables
 
 For using and creating tables in the Postgres database on your Docker container, you must set the ormconfig variables. But don't worry, it's very easy! There's a file called ormconfig.example.json in the root of the folders project. There, you can edit the variables as you like and than rename it to **ormconfig.json**. 
 For more information about, [click here](https://typeorm.io/#/using-ormconfig).
+
+Also, it's required that you also rename the file called config.example.env to **config.env**. You may change the PORT environment variable if you want, but if you don't, it will be setted as 3333 in the server file, located in the root folder.
 
 ### 5️⃣ Creating and running the Docker containers 
 
