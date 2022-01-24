@@ -9,7 +9,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
       state: Joi.string()
         .trim()
         .optional()
-        .valid(...Object.keys(brazilianUF))
+        .valid(...Object.values(brazilianUF))
     });
 
     const { error } = entity.validate(req.query, { abortEarly: false });
