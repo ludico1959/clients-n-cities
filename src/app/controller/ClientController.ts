@@ -36,9 +36,9 @@ class ClientController {
     try {
       await deleteClientService.execute(req.params.id);
 
-      return res.status(204).json(null);
+      return res.status(200).json(null);
     } catch (error) {
-      return res.status(404).json(error);
+      return res.status(400).json(error);
     }
   }
 
@@ -46,7 +46,7 @@ class ClientController {
     try {
       const result = await updateClientNameService.execute(req.params.id, req.body.name);
 
-      return res.status(204).json(result);
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json(error);
     }

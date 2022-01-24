@@ -38,7 +38,7 @@ describe('src :: api :: controllers :: city :: delete', () => {
 
     response = await request(app).delete(`/api/v1/clients/${response.body.id}`);
 
-    expect(response.status).toBe(204);
+    expect(response.status).toBe(200);
   });
 
   test('should return status code equal to 404', async () => {
@@ -46,7 +46,7 @@ describe('src :: api :: controllers :: city :: delete', () => {
 
     const response = await request(app).delete(`/api/v1/clients/${mockWrongClientId}`);
 
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(400);
   });
 
   test('should return status code equal to 400', async () => {

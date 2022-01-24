@@ -40,7 +40,7 @@ describe('src :: api :: controllers :: client :: update', () => {
 
     response = await request(app).put(`/api/v1/clients/${response.body.id}`).send({ name: mockUpdatedClientName });
 
-    expect(response.status).toBe(204);
+    expect(response.status).toBe(200);
   });
 
   test('should not update a client', async () => {

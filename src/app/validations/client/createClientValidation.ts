@@ -12,7 +12,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
 
       gender: Joi.string().trim().required().valid('M', 'F', 'X'),
 
-      birthdate: JoiDate.date().format('DD/MM/YYYY').required(),
+      birthdate: JoiDate.date().format('DD/MM/YYYY').required().less(Date.now()),
 
       cityId: Joi.string().uuid().required()
     });
