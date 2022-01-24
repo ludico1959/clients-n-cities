@@ -38,7 +38,7 @@ describe('src :: api :: controllers :: city :: delete', () => {
 
     response = await request(app).delete(`/api/v1/clients/${response.body.id}`);
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(204);
   });
 
   test('should return an error because there is no client with this ID', async () => {

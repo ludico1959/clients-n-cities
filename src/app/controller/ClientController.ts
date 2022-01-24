@@ -36,7 +36,7 @@ class ClientController {
     try {
       await deleteClientService.execute(req.params.id);
 
-      return res.status(200).json(null);
+      return res.status(204).json(null);
     } catch (error) {
       return res.status(400).json(error);
     }
