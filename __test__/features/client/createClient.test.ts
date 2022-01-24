@@ -47,7 +47,7 @@ describe('src :: api :: controllers :: client :: create', () => {
     expect(body.cityId).toBe(id);
   });
 
-  test('should return a status code equal to 400', async () => {
+  test('should return an error because already exists a client with the same name', async () => {
     const mockCity = {
       name: 'São Carlos',
       state: 'SP'
@@ -72,7 +72,7 @@ describe('src :: api :: controllers :: client :: create', () => {
     expect(response.status).toBe(400);
   });
 
-  test('should return a status code equal to 400', async () => {
+  test('should return an error because the client birthdate format is invalid ', async () => {
     const mockCity = {
       name: 'Rio de Janeiro',
       state: 'RJ'

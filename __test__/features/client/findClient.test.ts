@@ -46,7 +46,7 @@ describe('src :: api :: controllers :: city :: find', () => {
     expect(body.result[0].name).toBe(mockClientName);
   });
 
-  test('should not return a client by its name', async () => {
+  test('should return an error because there is no client with this name', async () => {
     const mockCity = {
       name: 'São Paulo',
       state: 'SP'

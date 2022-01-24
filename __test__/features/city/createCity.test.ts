@@ -33,7 +33,7 @@ describe('src :: api :: controllers :: city :: create', () => {
     expect(body.state).toBe('AC');
   });
 
-  test('should return status code equal to 400', async () => {
+  test('should return and error because the city already exists', async () => {
     const mockCity01 = {
       name: 'Rio Branco',
       state: 'AC'
@@ -50,7 +50,7 @@ describe('src :: api :: controllers :: city :: create', () => {
 
     expect(response.status).toBe(400);
   });
-  test('should return status code equal to 400', async () => {
+  test('should return an error because the state is invalid', async () => {
     const mockCity = {
       name: 'Goiânia',
       state: 'GG'

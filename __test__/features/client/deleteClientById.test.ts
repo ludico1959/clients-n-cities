@@ -41,7 +41,7 @@ describe('src :: api :: controllers :: city :: delete', () => {
     expect(response.status).toBe(200);
   });
 
-  test('should return status code equal to 404', async () => {
+  test('should return an error because there is no client with this ID', async () => {
     const mockWrongClientId = '152c7d29-61c5-4c0c-a149-65229071eb78';
 
     const response = await request(app).delete(`/api/v1/clients/${mockWrongClientId}`);
@@ -49,7 +49,7 @@ describe('src :: api :: controllers :: city :: delete', () => {
     expect(response.status).toBe(400);
   });
 
-  test('should return status code equal to 400', async () => {
+  test('should return an error because the ID format is invalid (not uuid)', async () => {
     const mockWrongClientId = '123456';
 
     const response = await request(app).delete(`/api/v1/clients/${mockWrongClientId}`);

@@ -41,7 +41,7 @@ describe('src :: api :: controllers :: city :: find', () => {
     body.result.forEach((city: { state: string }) => expect(city.state).toBe(mockState));
   });
 
-  test('should return status code equal to 404', async () => {
+  test('should return an error because there are no cities in the state', async () => {
     const mockState = 'RS';
 
     const mockCity01 = {
@@ -62,7 +62,7 @@ describe('src :: api :: controllers :: city :: find', () => {
     expect(response.status).toBe(404);
   });
 
-  test('should return status code equal to 400', async () => {
+  test('should return an error because the state is invalid', async () => {
     const mockCityState = 'AA';
 
     const mockCity = {

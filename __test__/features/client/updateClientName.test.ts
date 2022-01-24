@@ -43,7 +43,7 @@ describe('src :: api :: controllers :: client :: update', () => {
     expect(response.status).toBe(200);
   });
 
-  test('should not update a client', async () => {
+  test('should return an error because there is no client with this ID', async () => {
     const mockCity = {
       name: 'São Paulo',
       state: 'SP'
@@ -70,7 +70,7 @@ describe('src :: api :: controllers :: client :: update', () => {
     expect(response.status).toBe(400);
   });
 
-  test('should not update a client', async () => {
+  test('should return an error because the client name is required', async () => {
     const mockCity = {
       name: 'São Paulo',
       state: 'SP'
