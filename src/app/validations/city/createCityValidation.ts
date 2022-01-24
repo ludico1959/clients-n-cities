@@ -10,7 +10,7 @@ export = (req: Request, res: Response, next: NextFunction) => {
       state: Joi.string()
         .trim()
         .required()
-        .valid(...Object.keys(brazilianUF))
+        .valid(...brazilianUF)
     });
 
     const { error } = entity.validate(req.body, { abortEarly: false });

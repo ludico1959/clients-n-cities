@@ -19,7 +19,7 @@ export class CreateCities1641869624287 implements MigrationInterface {
           {
             name: 'state',
             type: 'varchar',
-            enum: Object.keys(brazilianUF)
+            enum: Object.values(brazilianUF)
           }
         ]
       })
