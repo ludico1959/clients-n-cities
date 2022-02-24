@@ -88,7 +88,7 @@ node src/app/server.js
 ```
 And that's it, folks! Congratulations, your app is running locally.
 
-##  📟 Test
+## 🚀 Test
 
 I will put here two options for using this API: 
 
